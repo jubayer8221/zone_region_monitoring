@@ -1,9 +1,7 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
     <div>
-      zone region
+      <h1>This is Home page.</h1>
     </div>
   );
 }
