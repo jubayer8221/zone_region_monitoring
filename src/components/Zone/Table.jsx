@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import data from "../../data/data"; // Assuming you have a data.json file with the initial data
 

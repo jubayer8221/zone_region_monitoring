@@ -16,7 +16,7 @@ const data = [
       disbursement: 1500,
       cashandbank: 800,
       overdue: 250,
-      isOpen: true,
+      isOpen: false,
       children: [
         {
           id: "1.1",
