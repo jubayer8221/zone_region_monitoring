@@ -1,7 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import data from "../data/data";
+import data from "../../../data/data";
+// import { FiEdit } from "react-icons/fi";
+import { IoEye } from "react-icons/io5";
+import Link from "next/link";
 
 // Recursive component to render rows for each level
 const DataRow = ({ item, level = 0 }) => {
@@ -17,14 +20,15 @@ const DataRow = ({ item, level = 0 }) => {
           {item.children && item.children.length > 0 ? (
             <button
               onClick={toggleOpen}
-              className="mr-2 p-2 bg-gray-300 rounded-md hover:bg-gray-400 transition"
+              className="mr-2 p-2 w-7
+               bg-gray-300 rounded-md hover:bg-gray-400 transition"
             >
               {isOpen ? "-" : "+"}
             </button>
           ) : (
-            <span className="mr-2"> </span>
+            <span className="mr-2 w-full"> </span>
           )}
-          {item.name}
+          <span className="w-40">{item.name}</span>
         </td>
         <td className="py-2 px-2 text-right">{item.borr}</td>
         <td className="py-2 px-2 text-right">{item.savings}</td>
@@ -40,6 +44,15 @@ const DataRow = ({ item, level = 0 }) => {
         <td className="py-2 px-2 text-right">{item.disbursement}</td>
         <td className="py-2 px-2 text-right">{item.cashandbank}</td>
         <td className="py-2 px-2 text-right">{item.overdue}</td>
+        <td>
+          {/* {data.map((item) => ( */}
+          <Link href={`/chartview/${item.id}`}>
+            <button className="py-2 px-2 text-right text w-full h-10 text-gray-600 hover:text-gray-800 transition duration-300 ease-in-out">
+              <IoEye />
+            </button>
+          </Link>
+          {/* ))} */}
+        </td>
       </tr>
       {isOpen &&
         item.children &&
@@ -60,8 +73,8 @@ const TableGrids = () => {
         <table className="min-w-full bg-white rounded-md">
           <thead>
             <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-              <th className="py-3 px-2 text-left">Name</th>
-              <th className="py-3 px-2 text-right">Borr</th>
+              <th className="py-3 px-2 text-left w-40">Name</th>
+              <th className="py-3 px-2 text-right">Borr /Br</th>
               <th className="py-3 px-2 text-right">Savings</th>
               <th className="py-3 px-2 text-right">Savings Ratio</th>
               <th className="py-3 px-2 text-right">OS</th>
@@ -75,6 +88,7 @@ const TableGrids = () => {
               <th className="py-3 px-2 text-right">Disbursement</th>
               <th className="py-3 px-2 text-right">Cash and Bank</th>
               <th className="py-3 px-2 text-right">Overdue</th>
+              <th className="py-3 px-2 text-right">Action</th>
             </tr>
           </thead>
           <tbody className="text-gray-600 text-sm">
