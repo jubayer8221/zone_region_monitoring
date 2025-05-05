@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import data from "../../data/data"; // Assuming you have a data.json file with the initial data
+import data from "../../data/data";
 
 export default function OperationPlaceTree() {
+  // Recursive component to render rows for each level
   const [data, setData] = useState([
     {
       id: "1",
@@ -22,7 +23,7 @@ export default function OperationPlaceTree() {
       disbursement: 0.5,
       cashandbank: 0.5,
       overdue: 0.5,
-      isOpen: true,
+      isOpen: false,
       children: [
         {
           id: "1.1",
