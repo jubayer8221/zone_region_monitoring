@@ -1,36 +1,36 @@
 import React from "react";
 
-const zone_table = () => {
+const ZoneTable = () => {
   return (
-    <div>
-      <table class="table-auto">
+      <div className="w-full px-10 flex items-center justify-center">
+        <table className="table-auto w-full">
         <thead>
-          <tr>
+          <tr className="w-full flex items-center justify-between">
             <th>Song</th>
             <th>Artist</th>
             <th>Year</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr className="w-full flex items-center self-end">
             <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
             <td>Malcolm Lockyer</td>
             <td>1961</td>
           </tr>
-          <tr>
+          <tr className="w-full flex items-center justify-between self-end">
             <td>Witchy Woman</td>
             <td>The Eagles</td>
             <td>1972</td>
           </tr>
-          <tr>
+          <tr className="w-full flex items-center justify-between self-end">
             <td>Shining Star</td>
             <td>Earth, Wind, and Fire</td>
             <td>1975</td>
           </tr>
         </tbody>
       </table>
-    </div>
+      </div>
   );
 };
 
-export default zone_table;
+export default ZoneTable;
