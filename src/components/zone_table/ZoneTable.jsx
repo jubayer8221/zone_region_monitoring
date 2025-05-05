@@ -1,9 +1,11 @@
 "use client";
 import data from "@/data/data";
+import Link from "next/link";
 import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { LuMinus } from "react-icons/lu";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
+import { TiEye } from "react-icons/ti";
 
 const ZoneTable = () => {
   const [isOpenRow, setIsOpenRow] = useState({});
@@ -26,10 +28,11 @@ const ZoneTable = () => {
           >
             {item.children && item.children.length > 0 ? (
               <button
-                onClick={() => toggleOpen(item.id)}
-                className="text-4 text-white w-6 h-6 p-2 bg-gray-400 rounded-full flex items-center justify-center cursor-pointer"
+                onClick={()=> toggleOpen(item.id)}
+                className=" text-white w-6 h-6 p-2 bg-gray-400 rounded-full flex items-center justify-center cursor-pointer"
+
               >
-                {isOpen ? <LuMinus className="" /> : <FaPlus className="" />}
+                {isOpen ? <LuMinus className="text-[20px]" /> : <FaPlus className="text-[20px]" />}
               </button>
             ) : (
               <VscDebugBreakpointLog className="text-4" />
@@ -50,6 +53,15 @@ const ZoneTable = () => {
           <td className="px-2 py-4">{item.disbursement}</td>
           <td className="px-2 py-4">{item.cashandbank}</td>
           <td className="px-2 py-4">{item.overdue}</td>
+          <td className="px-2 py-4">
+            {item.children && item.children.length > 0 ? (
+              <Link href="#">
+                <button className="w-6 h-6 p-1 rounded-full bg-gray-500 flex items-center justify-center cursor-pointer">
+                  <TiEye className="text-[20px] text-white" />
+                </button>
+              </Link>
+            ) : ""}
+          </td>          
         </tr>
         {isOpen &&
           item.children &&
@@ -84,6 +96,7 @@ const ZoneTable = () => {
                 <th className="px-2 py-4">Disbursement</th>
                 <th className="px-2 py-4">Cash & Bank</th>
                 <th className="px-2 py-4">Overdue</th>
+                <th className="px-2 py-4">View</th>
               </tr>
             </thead>
             <tbody className="text-gray-600 text-sm">
