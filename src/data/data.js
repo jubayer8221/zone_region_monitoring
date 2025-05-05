@@ -1520,7 +1520,7 @@ const data = [
             isOpen: false,
           },
           {
-            id: "1.1.5",
+            id: "2.1.5",
             name: "Patuakhali District",
             borr: 4000,
             savings: 28,
@@ -1539,7 +1539,7 @@ const data = [
             isOpen: false,
           },
           {
-            id: "1.1.6",
+            id: "2.1.6",
             name: "Pirojpur District",
             borr: 3500,
             savings: 24,
@@ -1560,7 +1560,7 @@ const data = [
         ],
       },
       {
-        id: "1.2",
+        id: "2.2",
         name: "Chittagong Division",
         borr: 60000,
         savings: 400,
@@ -1579,7 +1579,7 @@ const data = [
         isOpen: false,
         children: [
           {
-            id: "1.2.1",
+            id: "2.2.1",
             name: "Bandarban District",
             borr: 4000,
             savings: 25,
@@ -1598,7 +1598,7 @@ const data = [
             isOpen: false,
           },
           {
-            id: "1.2.2",
+            id: "2.2.2",
             name: "Brahmanbaria District",
             borr: 7000,
             savings: 45,
@@ -1617,7 +1617,7 @@ const data = [
             isOpen: false,
           },
           {
-            id: "1.2.3",
+            id: "2.2.3",
             name: "Chandpur District",
             borr: 6000,
             savings: 40,
@@ -1636,7 +1636,7 @@ const data = [
             isOpen: false,
           },
           {
-            id: "1.2.4",
+            id: "2.2.4",
             name: "Chittagong District",
             borr: 12000,
             savings: 80,
@@ -1655,7 +1655,7 @@ const data = [
             isOpen: false,
           },
           {
-            id: "1.2.5",
+            id: "2.2.5",
             name: "Comilla District",
             borr: 8000,
             savings: 50,
@@ -1674,7 +1674,7 @@ const data = [
             isOpen: false,
           },
           {
-            id: "1.2.6",
+            id: "2.2.6",
             name: "Cox's Bazar District",
             borr: 5000,
             savings: 35,
@@ -1693,7 +1693,7 @@ const data = [
             isOpen: false,
           },
           {
-            id: "1.2.7",
+            id: "2.2.7",
             name: "Feni District",
             borr: 4500,
             savings: 30,
