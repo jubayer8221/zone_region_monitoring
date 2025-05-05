@@ -1,27 +1,27 @@
+"use client";
+
 import { useState } from "react";
+import data from "../../data/data"; // Assuming you have a data.json file with the initial data
 
 export default function OperationPlaceTree() {
   const [data, setData] = useState([
     {
       id: "1",
       name: "Zone Office",
-      // rank: "Gold",
       borr: 713,
       savings: 1196.17,
       savingsRatio: "49%",
       os: 300.5,
-      AvgOS: 3.5,
+      avgos: 3.5,
       otr: "90%",
       totalcollection: 13.19,
       serviceCharge: 9.36,
       savingscollection: 3.83,
-      savingsetn: 0.5,
+      savingsrtn: 0.5,
       srratio: "50%",
       disbursement: 0.5,
       cashandbank: 0.5,
       overdue: 0.5,
-      // email: "Headquarters@gmail.com",
-      // commission: 5000,
       isOpen: true,
       children: [
         {
@@ -31,66 +31,125 @@ export default function OperationPlaceTree() {
           savings: 107.01,
           savingsRatio: "44%",
           os: 245.01,
-          AvgOS: 2.47,
-          rank: "Silver",
-          commission: 2000,
+          avgos: 2.47,
           otr: "94%",
+          totalcollection: 13.19,
+          serviceCharge: 9.36,
+          savingscollection: 3.83,
+          savingsrtn: 0.5,
+          srratio: "50%",
+          disbursement: 0.5,
+          cashandbank: 0.5,
+          overdue: 0.5,
           isOpen: false,
           children: [
             {
               id: "1.1.1",
               name: "North Station A",
-              rank: "Bronze",
-              commission: 1000,
-              children: [],
-            },
-            {
-              id: "1.2",
-              name: "East Division",
-              rank: "Silver",
-              commission: 1800,
+              borr: 500,
+              savings: 80.25,
+              savingsRatio: "38%",
+              os: 150.25,
+              avgos: 2.1,
+              otr: "94%",
+              totalcollection: 13.19,
+              serviceCharge: 9.36,
+              savingscollection: 3.83,
+              savingsrtn: 0.5,
+              srratio: "50%",
+              disbursement: 0.5,
+              cashandbank: 0.5,
+              overdue: 0.5,
               isOpen: false,
-              children: [],
+              children: [
+                {
+                  id: "1.1.1.1",
+                  name: "North Station A1",
+                  borr: 500,
+                  savings: 80.25,
+                  savingsRatio: "38%",
+                  os: 150.25,
+                  avgos: 2.1,
+                  otr: "94%",
+                  totalcollection: 13.19,
+                  serviceCharge: 9.36,
+                  savingscollection: 3.83,
+                  savingsrtn: 0.5,
+                  srratio: "50%",
+                  disbursement: 0.5,
+                  cashandbank: 0.5,
+                  overdue: 0.5,
+                  isOpen: false,
+                },
+
+                {
+                  id: "1.1.1.2",
+                  name: "North Station A2",
+                  borr: 500,
+                  savings: 80.25,
+                  savingsRatio: "38%",
+                  os: 150.25,
+                  avgos: 2.1,
+                  otr: "94%",
+                  totalcollection: 13.19,
+                  serviceCharge: 9.36,
+                  savingscollection: 3.83,
+                  savingsrtn: 0.5,
+                  srratio: "50%",
+                  disbursement: 0.5,
+                  cashandbank: 0.5,
+                  overdue: 0.5,
+                  isOpen: false,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: "1.2",
+          name: "Dhaka Division",
+          borr: 500,
+          savings: 80.25,
+          savingsRatio: "38%",
+          os: 150.25,
+          avgos: 2.1,
+          otr: "94%",
+          totalcollection: 13.19,
+          serviceCharge: 9.36,
+          savingscollection: 3.83,
+          savingsrtn: 0.5,
+          srratio: "50%",
+          disbursement: 0.5,
+          cashandbank: 0.5,
+          overdue: 0.5,
+          isOpen: false,
+          children: [
+            {
+              id: "1.2.1",
+              name: "Dhaka Division",
+              borr: 500,
+              savings: 80.25,
+              savingsRatio: "38%",
+              os: 150.25,
+              avgos: 2.1,
+              otr: "94%",
+              totalcollection: 13.19,
+              serviceCharge: 9.36,
+              savingscollection: 3.83,
+              savingsrtn: 0.5,
+              srratio: "50%",
+              disbursement: 0.5,
+              cashandbank: 0.5,
+              overdue: 0.5,
+              isOpen: false,
             },
           ],
         },
       ],
     },
-    // {
-    //   id: "2",
-    //   name: "Regional Office",
-    //   rank: "Platinum",
-    //   commission: 7000,
-    //   isOpen: false,
-    //   children: [
-    //     {
-    //       id: "2.1",
-    //       name: "West Division",
-    //       rank: "Gold",
-    //       commission: 3000,
-    //       isOpen: false,
-    //       children: [],
-    //     },
-    //     {
-    //       id: "2.2",
-    //       name: "South Division",
-    //       rank: "Silver",
-    //       commission: 1500,
-    //       isOpen: false,
-    //       children: [
-    //         {
-    //           id: "2.2.1",
-    //           name: "South Station B",
-    //           rank: "Bronze",
-    //           commission: 800,
-    //           children: [],
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // },
   ]);
 
+  // const [selectedNode, setSelectedNode] = useState(null);
   const [editModal, setEditModal] = useState({
     isOpen: false,
     node: null,
@@ -100,8 +159,20 @@ export default function OperationPlaceTree() {
 
   const [formData, setFormData] = useState({
     name: "",
-    rank: "",
-    commission: "",
+    borr: "",
+    savings: "",
+    savingsRatio: "",
+    os: "",
+    avgos: "",
+    otr: "",
+    totalcollection: "",
+    serviceCharge: "",
+    savingscollection: "",
+    savingsrtn: "",
+    srratio: "",
+    disbursement: "",
+    cashandbank: "",
+    overdue: "",
   });
 
   // Toggle node expansion
@@ -142,8 +213,40 @@ export default function OperationPlaceTree() {
     });
     setFormData(
       node
-        ? { name: node.name, rank: node.rank, commission: node.commission }
-        : { name: "", rank: "", commission: "" }
+        ? {
+            name: node.name,
+            borr: node.borr,
+            savings: node.savings,
+            savingsRatio: node.savingsRatio,
+            os: node.os,
+            avgos: node.avgos,
+            otr: node.otr,
+            totalcollection: node.totalcollection || "",
+            serviceCharge: node.serviceCharge || "",
+            savingscollection: node.savingscollection || "",
+            savingsrtn: node.savingsrtn || "",
+            srratio: node.srratio || "",
+            disbursement: node.disbursement || "",
+            cashandbank: node.cashandbank || "",
+            overdue: node.overdue || "",
+          }
+        : {
+            name: "",
+            borr: "",
+            savings: "",
+            savingsRatio: "",
+            os: "",
+            avgos: "",
+            otr: "",
+            totalcollection: "",
+            serviceCharge: "",
+            savingscollection: "",
+            savingsrtn: "",
+            srratio: "",
+            disbursement: "",
+            cashandbank: "",
+            overdue: "",
+          }
     );
   };
 
@@ -155,18 +258,46 @@ export default function OperationPlaceTree() {
       parentId: null,
       isEdit: false,
     });
-    setFormData({ name: "", rank: "", commission: "" });
+    setFormData({
+      name: "",
+      borr: "",
+      savings: "",
+      savingsRatio: "",
+      os: "",
+      avgos: "",
+      otr: "",
+      totalcollection: "",
+      serviceCharge: "",
+      savingscollection: "",
+      savingsrtn: "",
+      srratio: "",
+      disbursement: "",
+      cashandbank: "",
+      overdue: "",
+    });
   };
 
   // Add or update node
   const saveNode = () => {
-    if (!formData.name || !formData.rank || !formData.commission) return;
+    if (!formData.name) return;
 
     const newNode = {
       id: editModal.isEdit ? editModal.node.id : generateId(editModal.parentId),
       name: formData.name,
-      rank: formData.rank,
-      commission: Number(formData.commission),
+      borr: Number(formData.borr) || 0,
+      savings: Number(formData.savings) || 0,
+      savingsRatio: formData.savingsRatio || "0%",
+      os: Number(formData.os) || 0,
+      avgos: Number(formData.avgos) || 0,
+      otr: formData.otr || "0%",
+      totalcollection: Number(formData.totalcollection) || 0,
+      serviceCharge: Number(formData.serviceCharge) || 0,
+      savingscollection: Number(formData.savingscollection) || 0,
+      savingsrtn: Number(formData.savingsrtn) || 0,
+      srratio: formData.srratio || "0%",
+      disbursement: Number(formData.disbursement) || 0,
+      cashandbank: Number(formData.cashandbank) || 0,
+      overdue: Number(formData.overdue) || 0,
       isOpen: false,
       children: editModal.isEdit ? editModal.node.children : [],
     };
@@ -222,7 +353,8 @@ export default function OperationPlaceTree() {
 
     return (
       <div className="pl-4 my-1">
-        <div className="flex items-center hover:bg-gray-100 p-1 rounded ">
+        {/* Node Content */}
+        <div className="flex items-center hover:bg-gray-100 p-1 rounded">
           {hasChildren && (
             <button
               onClick={() => toggleNode(node.id)}
@@ -231,18 +363,29 @@ export default function OperationPlaceTree() {
               {node.isOpen ? "−" : "+"}
             </button>
           )}
-          {/* {!hasChildren && <span className="inline-block"></span>}
-          <span className="text-gray-800 font-semibold">{`${
-            " ".repeat(depth * 1) + node.name
-          }`}</span> */}
-          <span className="mx-2 text-gray-600">{node.email}</span>
-          <span className="font-medium flex-grow">{node.name}</span>
-          <span className="mx-2 text-gray-600">{node.rank}</span>
-          <span className="mx-2 text-gray-600">{node.commission}</span>
-          <span className="mx-2 text-gray-600">{node.borr}</span>
-          <span className="mx-2 text-gray-600">{node.savings}</span>
 
-          <div className="flex gap-2">
+          {/* Data columns */}
+          <span className="w-48 mx-2 font-xs">{node.name}</span>
+          <span className="w-24 mx-2 text-gray-600">{node.borr}</span>
+          <span className="w-24 mx-2 text-gray-600">{node.savings}</span>
+          <span className="w-24 mx-2 text-gray-600">{node.savingsRatio}</span>
+          <span className="w-24 mx-2 text-gray-600">{node.os}</span>
+          <span className="w-24 mx-2 text-gray-600">{node.avgos}</span>
+          <span className="w-24 mx-2 text-gray-600">{node.otr}</span>
+          <span className="w-24 mx-2 text-gray-600">
+            {node.totalcollection}
+          </span>
+          <span className="w-24 mx-2 text-gray-600">{node.serviceCharge}</span>
+          <span className="w-24 mx-2 text-gray-600">
+            {node.savingscollection}
+          </span>
+          <span className="w-24 mx-2 text-gray-600">{node.savingsrtn}</span>
+          <span className="w-24 mx-2 text-gray-600">{node.srratio}</span>
+          <span className="w-24 mx-2 text-gray-600">{node.disbursement}</span>
+          <span className="w-24 mx-2 text-gray-600">{node.cashandbank}</span>
+          <span className="w-24 mx-2 text-gray-600">{node.overdue}</span>
+
+          <div className="flex gap-2 ml-auto">
             <button
               onClick={() => openModal(node, parentId, true)}
               className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
@@ -291,20 +434,46 @@ export default function OperationPlaceTree() {
         Add Root Node
       </button>
 
-      <div className="border rounded-lg p-4 bg-white shadow-sm">
-        {data.map((node) => (
-          <TreeNode key={node.id} node={node} />
-        ))}
+      <div className="border rounded-lg bg-white shadow-sm overflow-x-auto">
+        {/* Fixed Header Row */}
+        <div className="flex items-center bg-gray-100 p-2 rounded-t-lg font-xs text-wrap sticky top-0 z-10">
+          <div className="flex">
+            <span className="lg:w-56 mx-2 mr-5">Operation Place</span>
+          </div>
+          <span className="w-auto px-2">Borr</span>
+          <span className="w-auto px-2">Savings</span>
+          <span className="w-auto px-2">Savings %</span>
+          <span className="w-auto px-2">OS</span>
+          <span className="w-auto px-2">Avg OS</span>
+          <span className="w-auto px-2">OTR%</span>
+          <span className="w-auto px-2">Total Collection</span>
+          <span className="w-auto px-2">Service Charge</span>
+          <span className="w-auto px-2">Savings Collection</span>
+          <span className="w-auto px-2">Savings RTN</span>
+          <span className="w-auto px-2">SR Ratio</span>
+          <span className="w-auto px-2">Disbursement</span>
+          <span className="w-auto px-2">Cash & Bank</span>
+          <span className="w-auto px-2">Overdue</span>
+          <span className="w-48 px-2 ml-auto">Actions</span>
+        </div>
+
+        {/* Tree Nodes */}
+        <div className="p-2">
+          {data.map((node) => (
+            <TreeNode key={node.id} node={node} />
+          ))}
+        </div>
       </div>
 
       {/* Edit/Add Modal */}
       {editModal.isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full">
+          <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
             <h2 className="text-xl font-bold mb-4">
               {editModal.isEdit ? "Edit Node" : "Add Node"}
             </h2>
-            <div className="space-y-4">
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Name
@@ -315,17 +484,18 @@ export default function OperationPlaceTree() {
                   value={formData.name}
                   onChange={handleInputChange}
                   className="w-full p-2 border rounded"
+                  required
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Rank
+                  Borrowers
                 </label>
                 <input
-                  type="text"
-                  name="rank"
-                  value={formData.rank}
+                  type="number"
+                  name="borr"
+                  value={formData.borr}
                   onChange={handleInputChange}
                   className="w-full p-2 border rounded"
                 />
@@ -333,12 +503,168 @@ export default function OperationPlaceTree() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Commission
+                  Savings
                 </label>
                 <input
                   type="number"
-                  name="commission"
-                  value={formData.commission}
+                  name="savings"
+                  value={formData.savings}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Savings Ratio
+                </label>
+                <input
+                  type="text"
+                  name="savingsRatio"
+                  value={formData.savingsRatio}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  OS
+                </label>
+                <input
+                  type="number"
+                  name="os"
+                  value={formData.os}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Avg OS
+                </label>
+                <input
+                  type="number"
+                  name="avgos"
+                  value={formData.avgos}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  OTR
+                </label>
+                <input
+                  type="text"
+                  name="otr"
+                  value={formData.otr}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Total Collection
+                </label>
+                <input
+                  type="number"
+                  name="totalcollection"
+                  value={formData.totalcollection}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Service Charge
+                </label>
+                <input
+                  type="number"
+                  name="serviceCharge"
+                  value={formData.serviceCharge}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Savings Collection
+                </label>
+                <input
+                  type="number"
+                  name="savingscollection"
+                  value={formData.savingscollection}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Savings RTN
+                </label>
+                <input
+                  type="number"
+                  name="savingsrtn"
+                  value={formData.savingsrtn}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  SR Ratio
+                </label>
+                <input
+                  type="text"
+                  name="srratio"
+                  value={formData.srratio}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Disbursement
+                </label>
+                <input
+                  type="number"
+                  name="disbursement"
+                  value={formData.disbursement}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Cash & Bank
+                </label>
+                <input
+                  type="number"
+                  name="cashandbank"
+                  value={formData.cashandbank}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Overdue
+                </label>
+                <input
+                  type="number"
+                  name="overdue"
+                  value={formData.overdue}
                   onChange={handleInputChange}
                   className="w-full p-2 border rounded"
                 />
