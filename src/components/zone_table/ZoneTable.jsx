@@ -8,7 +8,7 @@ import { VscDebugBreakpointLog } from "react-icons/vsc";
 const ZoneTable = () => {
   const [isOpenRow, setIsOpenRow] = useState({});
   const toggleOpen = (id) => {
-    setIsOpenRow((prev)=>({
+    setIsOpenRow((prev) => ({
       ...prev,
       [id]: !prev[id],
     }));
@@ -19,11 +19,14 @@ const ZoneTable = () => {
     return (
       <>
         <tr className="border-b border-gray-400 hover:bg-gray-100">
-          <td className={`px-2 py-4 flex items-center gap-5 ${level ? "ml-2" : ""}`}>
-            
+          <td
+            className={`px-2 py-4 flex items-center gap-5 ${
+              level ? "ml-2" : ""
+            }`}
+          >
             {item.children && item.children.length > 0 ? (
               <button
-                onClick={()=> toggleOpen(item.id)}
+                onClick={() => toggleOpen(item.id)}
                 className="text-4 text-white w-6 h-6 p-2 bg-gray-400 rounded-full flex items-center justify-center cursor-pointer"
               >
                 {isOpen ? <LuMinus className="" /> : <FaPlus className="" />}
@@ -48,7 +51,11 @@ const ZoneTable = () => {
           <td className="px-2 py-4">{item.cashandbank}</td>
           <td className="px-2 py-4">{item.overdue}</td>
         </tr>
-        {isOpen && item.children && item.children.map((child)=> <Randrow item={child} key={child.id} level={level+1} />)}
+        {isOpen &&
+          item.children &&
+          item.children.map((child) => (
+            <Randrow item={child} key={child.id} level={level + 1} />
+          ))}
       </>
     );
   };
@@ -56,9 +63,9 @@ const ZoneTable = () => {
   return (
     <>
       <div className="container mx-auto px-4 mb-20">
-      <h1 className="text-2xl font-bold mb-4 text-gray-800">
-        Bangladesh Financial Data
-      </h1>
+        <h1 className="text-2xl font-bold mb-4 text-gray-800">
+          Bangladesh Financial Data
+        </h1>
         <div className="overflow-x-auto bg-white rounded-md shadow-md">
           <table className="min-w-full">
             <thead>
@@ -81,7 +88,7 @@ const ZoneTable = () => {
             </thead>
             <tbody className="text-gray-600 text-sm">
               {data.map((item) => (
-                <Randrow key={item.id} item={item}/>
+                <Randrow key={item.id} item={item} />
               ))}
             </tbody>
           </table>

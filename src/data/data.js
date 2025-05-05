@@ -1,7 +1,8 @@
+"use client";
 const data = [
     {
       id: "1",
-      name: "Zone Office",
+      name: "New Office",
       borr: 350000,
       savings: 2000,
       savingsRatio: "40%",
@@ -1406,7 +1407,7 @@ const data = [
   },
   {
     id: "2",
-    name: "Zone Office",
+    name: "Old Office",
     borr: 350000,
     savings: 2000,
     savingsRatio: "40%",
