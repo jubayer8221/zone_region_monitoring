@@ -1,6 +1,7 @@
 "use client";
 
 import MultiBarChart from "@/app/chartview/[id]/page";
+import AreaChartCompo from "@/app/areachart/[id]/page";
 import data from "@/data/data";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -72,6 +73,22 @@ const ChildrenChart = () => {
     }
   }, [id]);
 
+  const [chartConfig, setChartConfig] = useState({
+    stacked: false,
+    horizontal: false,
+    showLegend: true,
+    showGrid: true,
+    showTooltip: true,
+  });
+
+  const commonProps = {
+    data: chartData2,
+    margin: { top: 20, right: 30, left: 20, bottom: 60 },
+    layout: chartConfig.horizontal ? "vertical" : "horizontal",
+    animationDuration: 500,
+    animationEasing: "ease-in-out",
+  };
+
   const processedData = chartData2
     ? [
         {
@@ -84,7 +101,6 @@ const ChildrenChart = () => {
           disbursement: Number(chartData2.disbursement) || 0,
           savings: Number(chartData2.savings) || 0,
           savingsRatio: parseFloat(chartData2.savingsRatio),
-
           totalcollection: Number(chartData2.totalcollection) || 0,
           serviceCharge: Number(chartData2.serviceCharge) || 0,
           savingscollection: Number(chartData2.savingscollection) || 0,
@@ -101,7 +117,7 @@ const ChildrenChart = () => {
     // { id: "borr", name: "Borr/Br", color: "#ff00ff" },
     { id: "savings", name: "Savings", color: "#82ca9d" },
     { id: "savingsRatio", name: "Savings Ratio", color: "#ff00ff" },
-    { id: "os", name: "OS", color: "#fff00" },
+    { id: "os", name: "OS", color: "#2E8B57" },
     { id: "avgos", name: "AvgOS", color: "#00ffff" },
     { id: "otr", name: "OTR", color: "#ff7f50" },
     { id: "totalcollection", name: "Total Collection", color: "#8884d8" },
@@ -109,7 +125,7 @@ const ChildrenChart = () => {
     { id: "savingscollection", name: "Savings Collection", color: "#ff7300" },
     { id: "savingsrtn", name: "Savings Return", color: "#6495ed" },
     { id: "srratio", name: "SR Ratio", color: "#dc143c" },
-    { id: "disbursement", name: "Disbursement", color: "#0000ff" },
+    { id: "disbursement", name: "Disbursement", color: "#38A3A5" },
     { id: "cashandbank", name: "Cash&Bank", color: "#00ff00" },
     { id: "overdue", name: "Overdue", color: "#ff0000" },
   ];
@@ -128,11 +144,17 @@ const ChildrenChart = () => {
         <div className="flex items-center justify-between">
           {chartData &&
             chartData.map((item) => (
-              <h1 key={data.id} className="text-3xl font-bold mb-4">
+              <h1
+                key={data.id}
+                className="lg:text-3xl md:text-2xl font-bold mb-4"
+              >
                 Line Chart for {item.name}
               </h1>
             ))}
-          <Link href="/" className="hover:text-green-600">
+          <Link
+            href="/"
+            className="hover:text-green-600 transition-transform transform active:scale-95"
+          >
             Go To Back
           </Link>
         </div>
@@ -167,7 +189,8 @@ const ChildrenChart = () => {
           />
           <Tooltip
             formatter={(value, name) => {
-              if (name === "savingsRatio") return `${value}%`;
+              if (name === "savingsRatio" || "otr" || "srratio")
+                return `${value}%`;
               return value;
             }}
           />
@@ -182,11 +205,17 @@ const ChildrenChart = () => {
         <div className="flex items-center justify-between">
           {chartData &&
             chartData.map((item) => (
-              <h1 key={data.id} className="text-3xl font-bold mb-4">
+              <h1
+                key={data.id}
+                className="xl:text-3xl lg:text-2xl font-bold mb-4"
+              >
                 Barchart for {item.name}
               </h1>
             ))}
-          <Link href="/" className="hover:text-green-600">
+          <Link
+            href="/"
+            className="hover:text-green-600 transition-transform transform active:scale-95"
+          >
             Go To Back
           </Link>
         </div>
@@ -204,8 +233,9 @@ const ChildrenChart = () => {
               <XAxis dataKey="name" angle={0} textAnchor="middle" height={70} />
               <YAxis />
               <Tooltip
-                processedData={(value, name) => {
-                  if (name === "savingsRatio") return `${value}%`;
+                formatter={(value, name) => {
+                  if (name === "savingsRatio" || "otr" || "srratio")
+                    return `${value}%`;
                   return value;
                 }}
               />
@@ -224,55 +254,8 @@ const ChildrenChart = () => {
         </div>
       </div>
 
-      {/* Area Chart  */}
-      <div className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200">
-        {processedData.length > 0 ? (
-          <>
-            <div className="flex items-center justify-between">
-              {chartData &&
-                chartData.map((item) => (
-                  <h1 key={data.id} className="text-3xl font-bold mb-4">
-                    Areachart for {item.name}
-                  </h1>
-                ))}
-              <Link href="/" className="hover:text-green-600">
-                Go To Back
-              </Link>
-            </div>
-            <AreaChart
-              width={800}
-              height={500}
-              data={processedData}
-              margin={{
-                top: 10,
-                right: 30,
-                left: 0,
-                bottom: 0,
-              }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis
-                dataKey="name"
-                label={{ value: "Values", angle: -90, position: "insideLeft" }}
-              />
-              <YAxis />
-              <Legend />
-              {valueColumns.map((column) => (
-                <Area
-                  type="monotone"
-                  dataKey={column.id}
-                  stackId="1"
-                  stroke={column.color}
-                  fill={column.color}
-                  name={column.name}
-                />
-              ))}
-              <Tooltip />
-            </AreaChart>
-          </>
-        ) : (
-          ""
-        )}
+      <div className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200 flex items-center justify-center flex-col">
+        <AreaChartCompo></AreaChartCompo>
       </div>
     </div>
   );
