@@ -150,13 +150,7 @@ const ChildrenChart = () => {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis />
-          {/* <Line
-            type="monotone"
-            dataKey="borr"
-            stackId="1"
-            stroke="#8884d8"
-            fill="#8884d8"
-          /> */}
+
           <Line
             type="monotone"
             dataKey="savings"
@@ -183,7 +177,7 @@ const ChildrenChart = () => {
       {/* Bar Chart  */}
       <div
         className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200"
-        style={{ width: "100%", height: "100vh" }}
+        style={{ width: "99%", height: "100vh" }}
       >
         <div className="flex items-center justify-between">
           {chartData &&
