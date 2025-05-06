@@ -134,70 +134,12 @@ const ChildrenChart = () => {
 
   return (
     <div>
-      <div className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200 flex items-center justify-center flex-col">
+      <div className="p-4 m-2 rounded-lg shadow-lg  flex items-center justify-center flex-col">
         <MultiBarChart />
       </div>
 
-      <div className="p-4 bg-gray-200 min-h-screen">
+      <div className=" bg-gray-200 min-h-screen">
         {/* barchart with prenate children  */}
-
-        {/* line chart  */}
-        <div className="p-4 m-2 rounded-lg shadow-lg bg-white ">
-          <div className="flex items-center justify-between">
-            {chartData &&
-              chartData.map((item) => (
-                <h1
-                  key={item.id}
-                  className="lg:text-3xl md:text-2xl font-bold mb-4"
-                >
-                  Line Chart for {item.name}
-                </h1>
-              ))}
-            <Link
-              href="/"
-              className="hover:text-green-600 transition-transform transform active:scale-95"
-            >
-              Go To Back
-            </Link>
-          </div>
-          <LineChart
-            width={1000}
-            height={500}
-            data={chartData}
-            margin={{
-              top: 10,
-              right: 30,
-              left: 0,
-              bottom: 0,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-
-            <Line
-              type="monotone"
-              dataKey="savings"
-              stackId="1"
-              stroke="#82ca9d"
-              fill="#82ca9d"
-            />
-            <Line
-              type="monotone"
-              dataKey="savingsRatio"
-              stackId="1"
-              stroke="#ffc658"
-              fill="#ffc658"
-            />
-            <Tooltip
-              formatter={(value, name) => {
-                if (name === "savingsRatio" || "otr" || "srratio")
-                  return `${value}%`;
-                return value;
-              }}
-            />
-          </LineChart>
-        </div>
 
         {/* Bar Chart  */}
         <div
@@ -261,7 +203,7 @@ const ChildrenChart = () => {
           </div>
         </div>
 
-        <div className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200 flex items-center justify-center flex-col">
+        <div className="m-2 rounded-lg shadow-lg items-center justify-center flex-col">
           <AreaChartCompo></AreaChartCompo>
         </div>
       </div>

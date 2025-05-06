@@ -125,28 +125,28 @@ const AreaChartCompo = () => {
       ]
     : [];
 
-  //   const processedData = chartData
-  //     ? [
-  //         {
-  //           id: chartData.id,
-  //           name: chartData.name,
-  //           borr: Number(chartData.borr) || 0,
-  //           savings: Number(chartData.savings) || 0,
-  //           totalcollection: Number(chartData.totalcollection) || 0,
-  //           serviceCharge: Number(chartData.serviceCharge) || 0,
-  //           savingscollection: Number(chartData.savingscollection) || 0,
-  //           os: Number(chartData.os) || 0,
-  //           avgos: Number(chartData.avgos) || 0,
-  //           otr: parseFloat(chartData.otr),
-  //           disbursement: Number(chartData.disbursement) || 0,
-  //           savingsRatio: parseFloat(chartData.savingsRatio),
-  //           cashandbank: Number(chartData.cashandbank) || 0,
-  //           srratio: parseFloat(chartData.srratio) || 0,
-  //           savingsrtn: Number(chartData.savingsrtn) || 0,
-  //           overdue: Number(chartData.overdue) || 0,
-  //         },
-  //       ]
-  //     : [];
+  // const processedData = chartData
+  //   ? [
+  //       {
+  //         id: chartData.id,
+  //         name: chartData.name,
+  //         borr: Number(chartData.borr) || 0,
+  //         savings: Number(chartData.savings) || 0,
+  //         totalcollection: Number(chartData.totalcollection) || 0,
+  //         serviceCharge: Number(chartData.serviceCharge) || 0,
+  //         savingscollection: Number(chartData.savingscollection) || 0,
+  //         os: Number(chartData.os) || 0,
+  //         avgos: Number(chartData.avgos) || 0,
+  //         otr: parseFloat(chartData.otr),
+  //         disbursement: Number(chartData.disbursement) || 0,
+  //         savingsRatio: parseFloat(chartData.savingsRatio),
+  //         cashandbank: Number(chartData.cashandbank) || 0,
+  //         srratio: parseFloat(chartData.srratio) || 0,
+  //         savingsrtn: Number(chartData.savingsrtn) || 0,
+  //         overdue: Number(chartData.overdue) || 0,
+  //       },
+  //     ]
+  //   : [];
 
   const commonProps = {
     data: processedData,
@@ -180,9 +180,10 @@ const AreaChartCompo = () => {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col gap-4 p-4">
+      {/* Area Chart */}
       <div
-        className="p-4 bg-gray-100 min-h-screen"
+        className="p-4 bg-gray-100 min-h-screen rounded-lg"
         style={{ width: "100%", height: "99vh" }} // Ensure container has height
       >
         <div className="flex items-center justify-between">
@@ -225,8 +226,10 @@ const AreaChartCompo = () => {
           </ResponsiveContainer>
         </div>
       </div>
+
+      {/* Line Chart */}
       <div
-        className="flex-col"
+        className="p-4 bg-gray-100 min-h-screen rounded-lg"
         style={{ width: "100%", height: "99vh" }} // Ensure container has height
       >
         <div className="flex items-center justify-between">
@@ -256,29 +259,44 @@ const AreaChartCompo = () => {
         </div>
       </div>
 
-      <div>
-        <ResponsiveContainer>
-          <PieChart width={800} height={400}>
-            {valueColumns.map((column) => (
+      {/* Pie Chart */}
+      <div
+        className="p-4 bg-gray-100 min-h-screen rounded-lg"
+        style={{ width: "100%", height: "99vh" }} // Ensure container has height
+      >
+        <div className="flex items-center justify-between">
+          <h1 className="lg:text-3xl md:text-2xl font-bold mb-4">
+            Pie Chart of {chartData?.name}
+          </h1>
+          <Link href="/" className="hover:text-green-600">
+            Go To Back
+          </Link>
+        </div>
+        <div style={{ width: "100%", height: "100%", minHeight: "99vh" }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
               <Pie
                 data={processedData}
-                cx={420}
-                cy={200}
-                startAngle={180}
-                endAngle={0}
-                innerRadius={60}
+                cx="50%"
+                cy="50%"
                 outerRadius={80}
-                fill={column.color}
-                paddingAngle={5}
-                dataKey={column.id}
+                fill="#8884d8"
+                dataKey="savings" // Change this to whichever metric you want to show
+                nameKey="name"
+                label={({ name, value }) => `${name}: ${value}`}
               >
-                {data.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
+                {processedData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={valueColumns[index % valueColumns.length].color}
+                  />
                 ))}
               </Pie>
-            ))}
-          </PieChart>
-        </ResponsiveContainer>
+              <Tooltip />
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     </div>
   );
