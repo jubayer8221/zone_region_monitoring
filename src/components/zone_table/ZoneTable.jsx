@@ -65,7 +65,7 @@ const ZoneTable = () => {
                 </button>
               </Link>
             ) : ""} */}
-            <Link href="#">
+            <Link href={`/chiledenchart/${item.id}`}>
               <button className="w-6 h-6 p-1 rounded-full bg-gray-500 flex items-center justify-center cursor-pointer">
                 <TiEye className="text-[20px] text-white" />
               </button>
