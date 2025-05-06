@@ -83,7 +83,7 @@ const ZoneTable = () => {
 
   return (
     <>
-      <div className="container mx-auto px-4 mb-20">
+      <div className="p-4 m-2 bg-gray-100">
         <h1 className="text-2xl font-bold mb-4 text-gray-800">
           Bangladesh Financial Data
         </h1>

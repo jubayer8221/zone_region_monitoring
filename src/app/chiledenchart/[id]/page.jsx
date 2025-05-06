@@ -133,129 +133,137 @@ const ChildrenChart = () => {
   console.log(chartData, "chartData");
 
   return (
-    <div className="p-4 bg-gray-200 min-h-screen">
-      {/* barchart with prenate children  */}
+    <div>
       <div className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200 flex items-center justify-center flex-col">
         <MultiBarChart />
       </div>
 
-      {/* line chart  */}
-      <div className="p-4 m-2 rounded-lg shadow-lg bg-white ">
-        <div className="flex items-center justify-between">
-          {chartData &&
-            chartData.map((item) => (
-              <h1
-                key={data.id}
-                className="lg:text-3xl md:text-2xl font-bold mb-4"
-              >
-                Line Chart for {item.name}
-              </h1>
-            ))}
-          <Link
-            href="/"
-            className="hover:text-green-600 transition-transform transform active:scale-95"
-          >
-            Go To Back
-          </Link>
-        </div>
-        <LineChart
-          width={1000}
-          height={500}
-          data={chartData}
-          margin={{
-            top: 10,
-            right: 30,
-            left: 0,
-            bottom: 0,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
+      <div className="p-4 bg-gray-200 min-h-screen">
+        {/* barchart with prenate children  */}
 
-          <Line
-            type="monotone"
-            dataKey="savings"
-            stackId="1"
-            stroke="#82ca9d"
-            fill="#82ca9d"
-          />
-          <Line
-            type="monotone"
-            dataKey="savingsRatio"
-            stackId="1"
-            stroke="#ffc658"
-            fill="#ffc658"
-          />
-          <Tooltip
-            formatter={(value, name) => {
-              if (name === "savingsRatio" || "otr" || "srratio")
-                return `${value}%`;
-              return value;
-            }}
-          />
-        </LineChart>
-      </div>
-
-      {/* Bar Chart  */}
-      <div
-        className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200"
-        style={{ width: "99%", height: "100vh" }}
-      >
-        <div className="flex items-center justify-between">
-          {chartData &&
-            chartData.map((item) => (
-              <h1
-                key={data.id}
-                className="xl:text-3xl lg:text-2xl font-bold mb-4"
-              >
-                Barchart for {item.name}
-              </h1>
-            ))}
-          <Link
-            href="/"
-            className="hover:text-green-600 transition-transform transform active:scale-95"
-          >
-            Go To Back
-          </Link>
-        </div>
-
-        <div
-          className=""
-          style={{ width: "100%", height: "100%", minHeight: "400px" }}
-        >
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart
-              data={processedData}
-              margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
-            >
-              <CartesianGrid strokeDasharray="3 3 3" />
-              <XAxis dataKey="name" angle={0} textAnchor="middle" height={70} />
-              <YAxis />
-              <Tooltip
-                formatter={(value, name) => {
-                  if (name === "savingsRatio" || "otr" || "srratio")
-                    return `${value}%`;
-                  return value;
-                }}
-              />
-
-              <Legend verticalAlign="top" height={36} />
-              {valueColumns.map((column) => (
-                <Bar
-                  key={column.id}
-                  dataKey={column.id}
-                  name={column.name}
-                  fill={column.color}
-                />
+        {/* line chart  */}
+        <div className="p-4 m-2 rounded-lg shadow-lg bg-white ">
+          <div className="flex items-center justify-between">
+            {chartData &&
+              chartData.map((item) => (
+                <h1
+                  key={item.id}
+                  className="lg:text-3xl md:text-2xl font-bold mb-4"
+                >
+                  Line Chart for {item.name}
+                </h1>
               ))}
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
+            <Link
+              href="/"
+              className="hover:text-green-600 transition-transform transform active:scale-95"
+            >
+              Go To Back
+            </Link>
+          </div>
+          <LineChart
+            width={1000}
+            height={500}
+            data={chartData}
+            margin={{
+              top: 10,
+              right: 30,
+              left: 0,
+              bottom: 0,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
 
-      <div className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200 flex items-center justify-center flex-col">
-        <AreaChartCompo></AreaChartCompo>
+            <Line
+              type="monotone"
+              dataKey="savings"
+              stackId="1"
+              stroke="#82ca9d"
+              fill="#82ca9d"
+            />
+            <Line
+              type="monotone"
+              dataKey="savingsRatio"
+              stackId="1"
+              stroke="#ffc658"
+              fill="#ffc658"
+            />
+            <Tooltip
+              formatter={(value, name) => {
+                if (name === "savingsRatio" || "otr" || "srratio")
+                  return `${value}%`;
+                return value;
+              }}
+            />
+          </LineChart>
+        </div>
+
+        {/* Bar Chart  */}
+        <div
+          className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200"
+          style={{ width: "99%", height: "100vh" }}
+        >
+          <div className="flex items-center justify-between">
+            {chartData &&
+              chartData.map((item) => (
+                <h1
+                  key={data.id}
+                  className="xl:text-3xl lg:text-2xl font-bold mb-4"
+                >
+                  Barchart for {item.name}
+                </h1>
+              ))}
+            <Link
+              href="/"
+              className="hover:text-green-600 transition-transform transform active:scale-95"
+            >
+              Go To Back
+            </Link>
+          </div>
+
+          <div
+            className=""
+            style={{ width: "100%", height: "100%", minHeight: "400px" }}
+          >
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                data={processedData}
+                margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
+              >
+                <CartesianGrid strokeDasharray="3 3 3" />
+                <XAxis
+                  dataKey="name"
+                  angle={0}
+                  textAnchor="middle"
+                  height={70}
+                />
+                <YAxis />
+                <Tooltip
+                  formatter={(value, name) => {
+                    if (name === "savingsRatio" || "otr" || "srratio")
+                      return `${value}%`;
+                    return value;
+                  }}
+                />
+
+                <Legend verticalAlign="top" height={36} />
+                {valueColumns.map((column) => (
+                  <Bar
+                    key={column.id}
+                    dataKey={column.id}
+                    name={column.name}
+                    fill={column.color}
+                  />
+                ))}
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200 flex items-center justify-center flex-col">
+          <AreaChartCompo></AreaChartCompo>
+        </div>
       </div>
     </div>
   );

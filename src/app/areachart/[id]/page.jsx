@@ -9,7 +9,12 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  LineChart,
+  Line,
   ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
 } from "recharts";
 import { useParams } from "next/navigation";
 import data from "../../../data/data";
@@ -66,46 +71,61 @@ const AreaChartCompo = () => {
   //   }
   // };
 
-  const xAxisProps = {
-    dataKey: data.id,
-    name: data.name || "Name",
-    angle: chartConfig.horizontal ? 0 : -45,
-    textAnchor: chartConfig.horizontal ? "middle" : "end",
-    height: 70,
-    scale: chartConfig.horizontal ? "band" : "auto",
-  };
-
-  const commonProps = {
-    data: data,
-    margin: { top: 20, right: 30, left: 20, bottom: 60 },
-    layout: chartConfig.horizontal ? "vertical" : "horizontal",
-    animationDuration: 500,
-    animationEasing: "ease-in-out",
-  };
+  //   const xAxisProps = {
+  //     dataKey: data.id,
+  //     name: data.name || "Name",
+  //     angle: chartConfig.horizontal ? 0 : -45,
+  //     textAnchor: chartConfig.horizontal ? "middle" : "end",
+  //     height: 70,
+  //     scale: chartConfig.horizontal ? "band" : "auto",
+  //   };
 
   // Process data with explicit type checking
 
-  //   const processedData = chartData?.children?.length
-  //     ? chartData.children.map((item) => ({
-  //         id: item.id,
-  //         name: item.name,
-  //         borr: Number(item.borr),
-  //         os: Number(item.os),
-  //         avgos: Number(item.avgos),
-  //         otr: parseFloat(item.otr),
-  //         disbursement: Number(item.disbursement),
-  //         savings: Number(item.savings),
-  //         savingsRatio: parseFloat(item.savingsRatio),
-  //         totalcollection: Number(item.totalcollection),
-  //         serviceCharge: Number(item.serviceCharge),
-  //         savingscollection: Number(item.savingscollection),
-  //         overdue: Number(item.overdue) || 0,
-  //         cashandbank: Number(item.cashandbank) || 0,
-  //         savingsRatio: Number(item.savingsRatio) || 0,
-  //         srratio: parseFloat(item.srratio),
-  //         savingsrtn: Number(item.savingsrtn) || 0,
-  //       }))
-  //     : chartData
+  const processedData = chartData?.children?.length
+    ? chartData.children.map((item) => ({
+        id: item.id,
+        name: item.name,
+        borr: Number(item.borr),
+        os: Number(item.os),
+        avgos: Number(item.avgos),
+        otr: parseFloat(item.otr),
+        disbursement: Number(item.disbursement),
+        savings: Number(item.savings),
+        savingsRatio: parseFloat(item.savingsRatio),
+        totalcollection: Number(item.totalcollection),
+        serviceCharge: Number(item.serviceCharge),
+        savingscollection: Number(item.savingscollection),
+        overdue: Number(item.overdue) || 0,
+        cashandbank: Number(item.cashandbank) || 0,
+        savingsRatio: Number(item.savingsRatio) || 0,
+        srratio: parseFloat(item.srratio),
+        savingsrtn: Number(item.savingsrtn) || 0,
+      }))
+    : chartData
+    ? [
+        {
+          id: chartData.id,
+          name: chartData.name,
+          borr: Number(chartData.borr) || 0,
+          savings: Number(chartData.savings) || 0,
+          totalcollection: Number(chartData.totalcollection) || 0,
+          serviceCharge: Number(chartData.serviceCharge) || 0,
+          savingscollection: Number(chartData.savingscollection) || 0,
+          os: Number(chartData.os) || 0,
+          avgos: Number(chartData.avgos) || 0,
+          otr: parseFloat(chartData.otr),
+          disbursement: Number(chartData.disbursement) || 0,
+          savingsRatio: parseFloat(chartData.savingsRatio),
+          cashandbank: Number(chartData.cashandbank) || 0,
+          srratio: parseFloat(chartData.srratio) || 0,
+          savingsrtn: Number(chartData.savingsrtn) || 0,
+          overdue: Number(chartData.overdue) || 0,
+        },
+      ]
+    : [];
+
+  //   const processedData = chartData
   //     ? [
   //         {
   //           id: chartData.id,
@@ -128,20 +148,15 @@ const AreaChartCompo = () => {
   //       ]
   //     : [];
 
-  const processedData = chartData
-    ? [
-        {
-          id: chartData.id,
-          name: chartData.name,
-          savings: Number(chartData.savings) || 0,
-          totalcollection: Number(chartData.totalcollection) || 0,
-          serviceCharge: Number(chartData.serviceCharge) || 0,
-          savingscollection: Number(chartData.savingscollection) || 0,
-        },
-      ]
-    : [];
+  const commonProps = {
+    data: processedData,
+    margin: { top: 20, right: 30, left: 20, bottom: 60 },
+    layout: chartConfig.horizontal ? "vertical" : "horizontal",
+    animationDuration: 900,
+    animationEasing: "ease-in-out",
+  };
 
-  console.log("Processed Data:", processedData); // Debug: Log processed data
+  console.log("Processed Data:", processedData);
 
   const valueColumns = [
     { id: "savings", name: "Savings", color: "#82ca9d" },
@@ -167,6 +182,50 @@ const AreaChartCompo = () => {
   return (
     <div className="w-full">
       <div
+        className="p-4 bg-gray-100 min-h-screen"
+        style={{ width: "100%", height: "99vh" }} // Ensure container has height
+      >
+        <div className="flex items-center justify-between">
+          <h1 className="lg:text-3xl md:text-2xl font-bold mb-4">
+            Area Chart of {chartData.name}
+          </h1>
+          <Link href="/" className="hover:text-green-600">
+            Go To Back
+          </Link>
+        </div>
+        <div style={{ width: "100%", height: "100%", minHeight: "400px" }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart {...commonProps}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey={data.name} />
+              <YAxis />
+              <Tooltip
+                formatter={(value, name) => {
+                  if (name === "savingsRatio" || "otr" || "srratio")
+                    return `${value}%`;
+                  else {
+                    return value;
+                  }
+                }}
+              />
+              <Legend />
+              {valueColumns.map((column) => (
+                <Area
+                  type="monotone"
+                  key={column.name}
+                  dataKey={column.id}
+                  name={column.name}
+                  stroke={column.color}
+                  fill={column.color}
+                  fillOpacity={0.4}
+                  stackId={column.id}
+                />
+              ))}
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+      <div
         className="flex-col"
         style={{ width: "100%", height: "99vh" }} // Ensure container has height
       >
@@ -178,39 +237,48 @@ const AreaChartCompo = () => {
             Go To Back
           </Link>
         </div>
-        <div
-          className=""
-          style={{ width: "100%", height: "100%", minHeight: "400px" }}
-        >
+        <div style={{ width: "100%", height: "100%", minHeight: "400px" }}>
           <ResponsiveContainer width="100%" height="100%">
-            <AreaChart {...commonProps}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis />
+            <LineChart width={500} height={300} data={processedData}>
+              <XAxis dataKey={processedData.name} />
               <YAxis />
-              <Tooltip
-                formatter={(value, name) => {
-                  if (name === "savingsRatio" || "otr" || "srratio")
-                    return `${value}%`;
-                  return value;
-                }}
-              />
-              <Legend />
+              <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
               {valueColumns.map((column) => (
-                <Area
+                <Line
                   type="monotone"
-                  key={column.id}
                   dataKey={column.id}
-                  name={column.name}
                   stroke={column.color}
-                  fill={column.color}
-                  fillOpacity={0.4}
-                  stackId={chartConfig.stacked ? "stack" : undefined}
                 />
               ))}
-            </AreaChart>
+              {/* <Line type="monotone" dataKey={data.id} stroke="#82ca9d" /> */}
+            </LineChart>
           </ResponsiveContainer>
         </div>
+      </div>
+
+      <div>
+        <ResponsiveContainer>
+          <PieChart width={800} height={400}>
+            {valueColumns.map((column) => (
+              <Pie
+                data={processedData}
+                cx={420}
+                cy={200}
+                startAngle={180}
+                endAngle={0}
+                innerRadius={60}
+                outerRadius={80}
+                fill={column.color}
+                paddingAngle={5}
+                dataKey={column.id}
+              >
+                {data.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Pie>
+            ))}
+          </PieChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );
