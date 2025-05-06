@@ -105,7 +105,7 @@ const Page = () => {
     <div className="p-4" style={{ width: "100%", height: "500px" }}>
       <h1 className="text-2xl font-bold mb-4 px-8">Bar Chart</h1>
       <div
-        className="bg-gray-100"
+        className=""
         style={{ width: "100%", height: "100%", minHeight: "400px" }} // Ensure container has height
       >
         <ResponsiveContainer width="100%" height="100%">
