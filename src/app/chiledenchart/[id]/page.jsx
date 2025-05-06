@@ -1,5 +1,6 @@
 "use client";
 
+import MultiBarChart from "@/app/chartview/[id]/page";
 import data from "@/data/data";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -18,55 +19,56 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const Data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+// const Data = [
+//   {
+//     name: "Page A",
+//     uv: 4000,
+//     pv: 2400,
+//     amt: 2400,
+//   },
+//   {
+//     name: "Page B",
+//     uv: 3000,
+//     pv: 1398,
+//     amt: 2210,
+//   },
+//   {
+//     name: "Page C",
+//     uv: 2000,
+//     pv: 9800,
+//     amt: 2290,
+//   },
+//   {
+//     name: "Page D",
+//     uv: 2780,
+//     pv: 3908,
+//     amt: 2000,
+//   },
+//   {
+//     name: "Page E",
+//     uv: 1890,
+//     pv: 4800,
+//     amt: 2181,
+//   },
+//   {
+//     name: "Page F",
+//     uv: 2390,
+//     pv: 3800,
+//     amt: 2500,
+//   },
+//   {
+//     name: "Page G",
+//     uv: 3490,
+//     pv: 4300,
+//     amt: 2100,
+//   },
+// ];
 
 const ChildrenChart = () => {
   const params = useParams();
   const id = params.id;
   const [chartData, setChartData] = useState(null);
+  const[chartData2, setChartData2] =useState(null);
   console.log("found", chartData);
 
   const findItemById = (items, id) => {
@@ -81,37 +83,60 @@ const ChildrenChart = () => {
     return null;
   };
 
+  // Function to collect chart data
+  const collectedChartData = (item) => {
+    console.log("===========", item);
+    const chartData = [];
+    console.log("ChartData-----", chartData);
+    const collect = (node) => {
+      console.log("collect: ", node);
+      chartData.push({
+        name: node.name,
+        borr: node.borr,
+        savings: node.savings,
+        savingsRatio: parseFloat(node.savingsRatio), // Convert "39%" to 39
+      });
+    //   if (node.children) {
+    //     node.children.forEach((chil) => collect(chil));
+    //   }
+    };
+    collect(item);
+    return chartData;
+  };
+
   useEffect(() => {
-    // const item = data.find((item) => item.id === id);
     if (id) {
       const item = findItemById(data, id);
-      // console.log("hell", item);
       if (item) {
-        setChartData(item);
+        const formattedData = collectedChartData(item);
+        setChartData(formattedData);
+        setChartData2(item);
       }
     }
   }, [id]);
 
-  const processedData = chartData
+  
+
+  const processedData = chartData2
     ? [
         {
-          id: chartData.id,
-          name: chartData.name,
-          borr: Number(chartData.borr) || 0,
-          os: Number(chartData.os) || 0,
-          avgos: Number(chartData.avgos) || 0,
-          otr: Number(chartData.otr) || "0%",
-          disbursement: Number(chartData.disbursement) || 0,
-          savings: Number(chartData.savings) || 0,
-          savingsRatio: Number(chartData.savingsRatio) || 0,
-          totalcollection: Number(chartData.totalcollection) || 0,
-          serviceCharge: Number(chartData.serviceCharge) || 0,
-          savingscollection: Number(chartData.savingscollection) || 0,
-          overdue: Number(chartData.overdue) || 0,
-          cashandbank: Number(chartData.cashandbank) || 0,
-          savingsRatio: Number(chartData.savingsRatio) || 0,
-          srratio: Number(chartData.srratio) || 0,
-          savingsrtn: Number(chartData.savingsrtn) || 0,
+          id: chartData2.id,
+          name: chartData2.name,
+          borr: Number(chartData2.borr) || 0,
+          os: Number(chartData2.os) || 0,
+          avgos: Number(chartData2.avgos) || 0,
+          otr: Number(chartData2.otr) || "0%",
+          disbursement: Number(chartData2.disbursement) || 0,
+          savings: Number(chartData2.savings) || 0,
+          savingsRatio: Number(chartData2.savingsRatio) || 0,
+          totalcollection: Number(chartData2.totalcollection) || 0,
+          serviceCharge: Number(chartData2.serviceCharge) || 0,
+          savingscollection: Number(chartData2.savingscollection) || 0,
+          overdue: Number(chartData2.overdue) || 0,
+          cashandbank: Number(chartData2.cashandbank) || 0,
+          savingsRatio: Number(chartData2.savingsRatio) || 0,
+          srratio: Number(chartData2.srratio) || 0,
+          savingsrtn: Number(chartData2.savingsrtn) || 0,
         },
       ]
     : [];
@@ -120,7 +145,7 @@ const ChildrenChart = () => {
     // { id: "borr", name: "Borr/Br", color: "#ff00ff" },
     { id: "savings", name: "Savings", color: "#82ca9d" },
     { id: "savingsRatio", name: "Savings Ratio", color: "#ff00ff" },
-    { id: "os", name: "OS", color: "#ffff00" },
+    { id: "os", name: "OS", color: "#fff00" },
     { id: "avgos", name: "AvgOS", color: "#00ffff" },
     { id: "otr", name: "OTR", color: "#ff7f50" },
     { id: "totalcollection", name: "Total Collection", color: "#8884d8" },
@@ -139,12 +164,17 @@ const ChildrenChart = () => {
     <div className="p-4 bg-gray-200 min-h-screen">
       {/* <h1>{chartData.name}</h1> */}
       {/* <h1>{chartData.map((item)=>)}</h1> */}
-      <div className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200">
-        <h1>Area Chart </h1>
-        <AreaChart
-          width={800}
+      <div className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200 flex items-center justify-center flex-col">
+        <MultiBarChart />
+      </div>
+      <div className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200 flex items-center justify-center flex-col">
+        {chartData && chartData.map((item)=>(
+            <h1 className="text-3xl font-bold mb-4">{item.name}</h1>
+        ))}
+        <LineChart
+          width={1000}
           height={500}
-          data={Data}
+          data={chartData}
           margin={{
             top: 10,
             right: 30,
@@ -155,34 +185,36 @@ const ChildrenChart = () => {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis />
-          <Area
+          {/* <Line
             type="monotone"
-            dataKey="uv"
+            dataKey="borr"
             stackId="1"
             stroke="#8884d8"
             fill="#8884d8"
-          />
-          <Area
+          /> */}
+          <Line
             type="monotone"
-            dataKey="pv"
+            dataKey="savings"
             stackId="1"
             stroke="#82ca9d"
             fill="#82ca9d"
           />
-          <Area
+          <Line
             type="monotone"
-            dataKey="amt"
+            dataKey="savingsRatio"
             stackId="1"
             stroke="#ffc658"
             fill="#ffc658"
           />
-          <Tooltip />
-        </AreaChart>
+          <Tooltip formatter={(value, name) => {
+            if (name === "savingsRatio") return `${value}%`;
+            return value;
+          }} />
+        </LineChart>
       </div>
+       {/* Bar Chart  */}
 
-      {/* Bar Chart  */}
-
-      <div
+       <div
         className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200"
         style={{ width: "100%", height: "100vh" }}
       >
@@ -204,7 +236,7 @@ const ChildrenChart = () => {
               <CartesianGrid strokeDasharray="3 3 3 3 3" />
               <XAxis dataKey="name" angle={0} textAnchor="middle" height={70} />
               <YAxis />
-              <Tooltip className="overflow-auto" />
+              <Tooltip className="" />
               <Legend verticalAlign="top" height={36} />
               {valueColumns.map((column) => (
                 <Bar
@@ -223,3 +255,4 @@ const ChildrenChart = () => {
 };
 
 export default ChildrenChart;
+
