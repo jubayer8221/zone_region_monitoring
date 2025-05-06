@@ -30,8 +30,7 @@ const ZoneTable = () => {
             {item.children && item.children.length > 0 ? (
               <button
                 onClick={() => toggleOpen(item.id)}
-                className=" text-white w-6 h-6 p-2 bg-gray-400 rounded-full flex items-center justify-center cursor-pointer"
-
+                className=" text-white w-6 h-6 p-2 bg-gray-400 rounded-full flex items-center justify-center cursor-pointer transition-transform transform active:scale-95"
               >
                 {isOpen ? (
                   <LuMinus className="text-[20px]" />
@@ -67,7 +66,7 @@ const ZoneTable = () => {
               </Link>
             ) : ""} */}
             <Link href={`/chiledenchart/${item.id}`}>
-              <button className="w-6 h-6 p-1 rounded-full bg-gray-500 flex items-center justify-center cursor-pointer">
+              <button className="w-6 h-6 p-1 rounded-full bg-gray-500 flex items-center justify-center cursor-pointer transition-transform transform active:scale-95">
                 <TiEye className="text-[20px] text-white" />
               </button>
             </Link>
