@@ -2,8 +2,7 @@
 
 import React, { useState } from "react";
 import data from "../../../data/data";
-// import { FiEdit } from "react-icons/fi";
-import { IoEye } from "react-icons/io5";
+import { TiEye } from "react-icons/ti";
 import Link from "next/link";
 
 // Recursive component to render rows for each level
@@ -20,8 +19,7 @@ const DataRow = ({ item, level = 0 }) => {
           {item.children && item.children.length > 0 ? (
             <button
               onClick={toggleOpen}
-              className="mr-2 p-2 w-7
-               bg-gray-300 rounded-md hover:bg-gray-400 transition"
+              className="mr-2 p-2 w-7 bg-gray-300 rounded-md hover:bg-gray-400 transition transform active:scale-90"
             >
               {isOpen ? "-" : "+"}
             </button>
@@ -45,13 +43,11 @@ const DataRow = ({ item, level = 0 }) => {
         <td className="py-2 px-2 text-right">{item.cashandbank}</td>
         <td className="py-2 px-2 text-right">{item.overdue}</td>
         <td>
-          {/* {data.map((item) => ( */}
           <Link href={`/chartview/${item.id}`}>
-            <button className="py-2 px-2 text-right text w-full h-10 text-gray-600 hover:text-gray-800 transition duration-300 ease-in-out">
-              <IoEye />
+            <button className="w-6 h-6 p-1 rounded-full bg-gray-500 flex items-center justify-center cursor-pointer transform active:scale-90">
+              <TiEye className="text-[20px] text-white" />
             </button>
           </Link>
-          {/* ))} */}
         </td>
       </tr>
       {isOpen &&
@@ -72,7 +68,7 @@ const TableGrids = () => {
       <div className="p-4 overflow-x-auto rounded-md shadow-lg bg-white border border-gray-200">
         <table className="min-w-full bg-white rounded-md">
           <thead>
-            <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+            <tr className="bg-gray-200 text-gray-600 text-sm leading-normal">
               <th className="py-3 px-2 text-left w-40">Name</th>
               <th className="py-3 px-2 text-right">Borr /Br</th>
               <th className="py-3 px-2 text-right">Savings</th>
