@@ -1,106 +1,116 @@
-"use client"
-import data from '@/data/data'
-import { useParams } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
-import { XAxis, YAxis, LineChart, Line, Tooltip, AreaChart, Area, CartesianGrid } from 'recharts';
-
-const Data = [
-    {
-        name: 'Page A',
-        uv: 4000,
-        pv: 2400,
-        amt: 2400,
-      },
-      {
-        name: 'Page B',
-        uv: 3000,
-        pv: 1398,
-        amt: 2210,
-      },
-      {
-        name: 'Page C',
-        uv: 2000,
-        pv: 9800,
-        amt: 2290,
-      },
-      {
-        name: 'Page D',
-        uv: 2780,
-        pv: 3908,
-        amt: 2000,
-      },
-      {
-        name: 'Page E',
-        uv: 1890,
-        pv: 4800,
-        amt: 2181,
-      },
-      {
-        name: 'Page F',
-        uv: 2390,
-        pv: 3800,
-        amt: 2500,
-      },
-      {
-        name: 'Page G',
-        uv: 3490,
-        pv: 4300,
-        amt: 2100,
-      },
-    ];
+"use client";
+import data from "@/data/data";
+import { useParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import {
+  XAxis,
+  YAxis,
+  Tooltip,
+  AreaChart,
+  Area,
+  CartesianGrid,
+  LineChart,
+  Line,
+} from "recharts";
 
 const ChildrenChart = () => {
-    const params = useParams();
-    const id = params.id;
-    const [chartData, setChartData] = useState(null);
-    console.log("found", chartData);
+  const params = useParams();
+  const id = params.id;
+  const [chartData, setChartData] = useState(null);
+  console.log("found", chartData);
 
-    const findItemById = (items, id) =>{
-        // console.log("all data",items)
-        for(let item of items){
-            if(item.id === id) return item;
-            if(item.children){
-                const found = findItemById(item.children, id);
-                if(found) return found;
-            }
-        }
-        return null;
+  const findItemById = (items, id) => {
+    for (let item of items) {
+      if (item.id === id) return item;
+      if (item.children) {
+        const found = findItemById(item.children, id);
+        if (found) return found;
+      }
     }
+    return null;
+  };
 
-    useEffect(() =>{
-        // const item = data.find((item) => item.id === id);
-        if(id){
-            const item = findItemById(data, id);
+  // Function to collect chart data
+  const collectedChartData = (item) => {
+    console.log("===========", item);
+    const chartData = [];
+    console.log("ChartData-----", chartData);
+    const collect = (node) => {
+      console.log("collect: ", node);
+      chartData.push({
+        name: node.name,
+        borr: node.borr,
+        savings: node.savings,
+        savingsRatio: parseFloat(node.savingsRatio), // Convert "39%" to 39
+      });
+    //   if (node.children) {
+    //     node.children.forEach((chil) => collect(chil));
+    //   }
+    };
+    collect(item);
+    return chartData;
+  };
 
-            // console.log("hell", item);
-            if(item){
-                setChartData(item);
-            }            
-        }
-    },[id])
-    
+  useEffect(() => {
+    if (id) {
+      const item = findItemById(data, id);
+      if (item) {
+        const formattedData = collectedChartData(item);
+        setChartData(formattedData);
+      }
+    }
+  }, [id]);
+
   return (
-    <div>
-      {/* <h1>{chartData.name}</h1> */}
-      {/* <h1>{chartData.map((item)=>)}</h1> */}
-      <div className='m-10'>
-        <AreaChart width={800} height={500} data={Data} margin={{
+    <div className="flex items-center justify-center flex-col">
+      
+      {chartData && chartData.map((item) => (
+        <h1 className="mt-10 text-3xl font-bold" key={item.name}>{item.name}</h1>
+      ))}
+      <div className="m-10">
+        <LineChart
+          width={1000}
+          height={500}
+          data={chartData}
+          margin={{
             top: 10,
             right: 30,
             left: 0,
             bottom: 0,
-          }}>
-        <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Area type="monotone" dataKey="uv" stackId="1" stroke="#8884d8" fill="#8884d8" />
-          <Area type="monotone" dataKey="pv" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
-          <Area type="monotone" dataKey="amt" stackId="1" stroke="#ffc658" fill="#ffc658" />
-            <Tooltip />
-        </AreaChart>
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          {/* <Line
+            type="monotone"
+            dataKey="borr"
+            stackId="1"
+            stroke="#8884d8"
+            fill="#8884d8"
+          /> */}
+          <Line
+            type="monotone"
+            dataKey="savings"
+            stackId="1"
+            stroke="#82ca9d"
+            fill="#82ca9d"
+          />
+          <Line
+            type="monotone"
+            dataKey="savingsRatio"
+            stackId="1"
+            stroke="#ffc658"
+            fill="#ffc658"
+          />
+          <Tooltip formatter={(value, name) => {
+            if (name === "savingsRatio") return `${value}%`;
+            return value;
+          }} />
+        </LineChart>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ChildrenChart
+export default ChildrenChart;
