@@ -6,6 +6,7 @@ import TableGrids from "@/components/Home//Table/TableGrids";
 // import Table from "@/components/Zone/Table";
 import ZoneTable from "@/components/zone_table/ZoneTable";
 // import TableGrids from "@/components/TableGrids";
+// import Chart from "@/components/Home/Chart/Chart";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
 
         <TableGrids></TableGrids>
         <ZoneTable />
+        {/* <Chart></Chart> */}
       </div>
     </>
   );
