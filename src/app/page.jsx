@@ -2,7 +2,7 @@
 
 import React from "react";
 // import Table from "@/components/Zone/Table";
-import TableGrids from "@/components/Home//Table/TableGrids";
+// import TableGrids from "@/components/Home//Table/TableGrids";
 // import Table from "@/components/Zone/Table";
 import ZoneTable from "@/components/zone_table/ZoneTable";
 // import TableGrids from "@/components/TableGrids";
@@ -16,7 +16,7 @@ export default function Home() {
         {/* <Table></Table> */}
         {/* <Table></Table> */}
 
-        <TableGrids></TableGrids>
+        {/* <TableGrids></TableGrids> */}
         <ZoneTable />
         {/* <Chart></Chart> */}
       </div>
