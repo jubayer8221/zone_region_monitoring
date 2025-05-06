@@ -26,13 +26,18 @@ const ZoneTable = () => {
               level ? "ml-2" : ""
             }`}
           >
+            <span className={`${level ? "ml-2" : ""}`}></span>
             {item.children && item.children.length > 0 ? (
               <button
-                onClick={()=> toggleOpen(item.id)}
+                onClick={() => toggleOpen(item.id)}
                 className=" text-white w-6 h-6 p-2 bg-gray-400 rounded-full flex items-center justify-center cursor-pointer"
 
               >
-                {isOpen ? <LuMinus className="text-[20px]" /> : <FaPlus className="text-[20px]" />}
+                {isOpen ? (
+                  <LuMinus className="text-[20px]" />
+                ) : (
+                  <FaPlus className="text-[20px]" />
+                )}
               </button>
             ) : (
               <VscDebugBreakpointLog className="text-4" />
@@ -54,14 +59,19 @@ const ZoneTable = () => {
           <td className="px-2 py-4">{item.cashandbank}</td>
           <td className="px-2 py-4">{item.overdue}</td>
           <td className="px-2 py-4">
-            {item.children && item.children.length > 0 ? (
+            {/* {item.children && item.children.length > 0 ? (
               <Link href="#">
                 <button className="w-6 h-6 p-1 rounded-full bg-gray-500 flex items-center justify-center cursor-pointer">
                   <TiEye className="text-[20px] text-white" />
                 </button>
               </Link>
-            ) : ""}
-          </td>          
+            ) : ""} */}
+            <Link href={`/chiledenchart/${item.id}`}>
+              <button className="w-6 h-6 p-1 rounded-full bg-gray-500 flex items-center justify-center cursor-pointer">
+                <TiEye className="text-[20px] text-white" />
+              </button>
+            </Link>
+          </td>
         </tr>
         {isOpen &&
           item.children &&

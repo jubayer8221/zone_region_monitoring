@@ -68,7 +68,7 @@ const TableGrids = () => {
       <div className="p-4 overflow-x-auto rounded-md shadow-lg bg-white border border-gray-200">
         <table className="min-w-full bg-white rounded-md">
           <thead>
-            <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+            <tr className="bg-gray-200 text-gray-600 text-sm leading-normal">
               <th className="py-3 px-2 text-left w-40">Name</th>
               <th className="py-3 px-2 text-right">Borr /Br</th>
               <th className="py-3 px-2 text-right">Savings</th>
