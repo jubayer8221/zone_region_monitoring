@@ -26,7 +26,7 @@ const ZoneTable = () => {
               level ? "ml-2" : ""
             }`}
           >
-            <span className={`${level ? "ml-2" : ""}`}></span>
+            {/* <span className={`${level ? "ml-2" : ""}`}></span> */}
             {item.children && item.children.length > 0 ? (
               <button
                 onClick={() => toggleOpen(item.id)}

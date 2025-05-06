@@ -19,51 +19,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// const Data = [
-//   {
-//     name: "Page A",
-//     uv: 4000,
-//     pv: 2400,
-//     amt: 2400,
-//   },
-//   {
-//     name: "Page B",
-//     uv: 3000,
-//     pv: 1398,
-//     amt: 2210,
-//   },
-//   {
-//     name: "Page C",
-//     uv: 2000,
-//     pv: 9800,
-//     amt: 2290,
-//   },
-//   {
-//     name: "Page D",
-//     uv: 2780,
-//     pv: 3908,
-//     amt: 2000,
-//   },
-//   {
-//     name: "Page E",
-//     uv: 1890,
-//     pv: 4800,
-//     amt: 2181,
-//   },
-//   {
-//     name: "Page F",
-//     uv: 2390,
-//     pv: 3800,
-//     amt: 2500,
-//   },
-//   {
-//     name: "Page G",
-//     uv: 3490,
-//     pv: 4300,
-//     amt: 2100,
-//   },
-// ];
-
 const ChildrenChart = () => {
   const params = useParams();
   const id = params.id;
@@ -96,6 +51,7 @@ const ChildrenChart = () => {
         savings: node.savings,
         savingsRatio: parseFloat(node.savingsRatio), // Convert "39%" to 39
       });
+      // chartData.push({
       //   if (node.children) {
       //     node.children.forEach((chil) => collect(chil));
       //   }
@@ -127,6 +83,7 @@ const ChildrenChart = () => {
           disbursement: Number(chartData2.disbursement) || 0,
           savings: Number(chartData2.savings) || 0,
           savingsRatio: parseFloat(chartData2.savingsRatio),
+
           totalcollection: Number(chartData2.totalcollection) || 0,
           serviceCharge: Number(chartData2.serviceCharge) || 0,
           savingscollection: Number(chartData2.savingscollection) || 0,
@@ -160,15 +117,15 @@ const ChildrenChart = () => {
 
   return (
     <div className="p-4 bg-gray-200 min-h-screen">
-      {/* <h1>{chartData.name}</h1> */}
-      {/* <h1>{chartData.map((item)=>)}</h1> */}
       <div className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200 flex items-center justify-center flex-col">
         <MultiBarChart />
       </div>
       <div className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200 flex items-center justify-center flex-col">
         {chartData &&
           chartData.map((item) => (
-            <h1 className="text-3xl font-bold mb-4">{item.name}</h1>
+            <h1 key={data.id} className="text-3xl font-bold mb-4">
+              Line Chart for {item.name}
+            </h1>
           ))}
         <LineChart
           width={1000}
@@ -221,7 +178,7 @@ const ChildrenChart = () => {
       >
         {processedData.map((data) => (
           <h1 key={data.id} className="text-2xl font-bold mb-4 px-8">
-            Barchart of you {data.name}
+            Barchart for {data.name}
           </h1>
         ))}
 
@@ -243,6 +200,7 @@ const ChildrenChart = () => {
                   return value;
                 }}
               />
+
               <Legend verticalAlign="top" height={36} />
               {valueColumns.map((column) => (
                 <Bar
@@ -255,6 +213,42 @@ const ChildrenChart = () => {
             </BarChart>
           </ResponsiveContainer>
         </div>
+      </div>
+
+      {/* Area Chart  */}
+      <div className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200">
+        {processedData.map((data) => (
+          <h1 key={data.id} className="text-2xl font-bold mb-4 px-8">
+            Area chart for {data.name}
+          </h1>
+        ))}
+
+        {processedData.map((data) => (
+          <AreaChart
+            width={800}
+            height={500}
+            data={processedData}
+            margin={{
+              top: 10,
+              right: 30,
+              left: 0,
+              bottom: 0,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey={data.name} />
+            <YAxis />
+
+            <Area
+              type="monotone"
+              dataKey={data.savings}
+              stackId={data.id}
+              stroke="#8884d8"
+              fill="#8884d8"
+            />
+            <Tooltip />
+          </AreaChart>
+        ))}
       </div>
     </div>
   );

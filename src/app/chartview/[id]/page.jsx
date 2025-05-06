@@ -14,7 +14,7 @@ import {
 import { useParams } from "next/navigation";
 import data from "../../../data/data";
 
-const Page = () => {
+const MultiBarChart = () => {
   const params = useParams();
   const { id } = params;
   const [chartData, setChartData] = useState(null);
@@ -36,7 +36,7 @@ const Page = () => {
     if (id) {
       setLoading(true);
       const item = findItemById(data, id);
-      console.log("Found item:", item); // Debug: Log the found item
+      // console.log("Found item:", item); // Debug: Log the found items
       if (item) {
         setChartData(item);
       } else {
@@ -133,4 +133,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default MultiBarChart;
