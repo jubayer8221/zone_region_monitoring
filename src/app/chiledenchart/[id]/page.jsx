@@ -2,6 +2,7 @@
 
 import MultiBarChart from "@/app/chartview/[id]/page";
 import data from "@/data/data";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import {
@@ -40,9 +41,9 @@ const ChildrenChart = () => {
 
   // Function to collect chart data
   const collectedChartData = (item) => {
-    console.log("===========", item);
+    // console.log("===========", item);
     const chartData = [];
-    console.log("ChartData-----", chartData);
+    // console.log("ChartData-----", chartData);
     const collect = (node) => {
       console.log("collect: ", node);
       chartData.push({
@@ -117,16 +118,24 @@ const ChildrenChart = () => {
 
   return (
     <div className="p-4 bg-gray-200 min-h-screen">
+      {/* barchart with prenate children  */}
       <div className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200 flex items-center justify-center flex-col">
         <MultiBarChart />
       </div>
-      <div className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200 flex items-center justify-center flex-col">
-        {chartData &&
-          chartData.map((item) => (
-            <h1 key={data.id} className="text-3xl font-bold mb-4">
-              Line Chart for {item.name}
-            </h1>
-          ))}
+
+      {/* line chart  */}
+      <div className="p-4 m-2 rounded-lg shadow-lg bg-white ">
+        <div className="flex items-center justify-between">
+          {chartData &&
+            chartData.map((item) => (
+              <h1 key={data.id} className="text-3xl font-bold mb-4">
+                Line Chart for {item.name}
+              </h1>
+            ))}
+          <Link href="/" className="hover:text-green-600">
+            Go To Back
+          </Link>
+        </div>
         <LineChart
           width={1000}
           height={500}
@@ -164,17 +173,23 @@ const ChildrenChart = () => {
           />
         </LineChart>
       </div>
-      {/* Bar Chart  */}
 
+      {/* Bar Chart  */}
       <div
         className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200"
         style={{ width: "99%", height: "100vh" }}
       >
-        {processedData.map((data) => (
-          <h1 key={data.id} className="text-2xl font-bold mb-4 px-8">
-            Barchart for {data.name}
-          </h1>
-        ))}
+        <div className="flex items-center justify-between">
+          {chartData &&
+            chartData.map((item) => (
+              <h1 key={data.id} className="text-3xl font-bold mb-4">
+                Barchart for {item.name}
+              </h1>
+            ))}
+          <Link href="/" className="hover:text-green-600">
+            Go To Back
+          </Link>
+        </div>
 
         <div
           className=""
@@ -211,38 +226,53 @@ const ChildrenChart = () => {
 
       {/* Area Chart  */}
       <div className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200">
-        {processedData.map((data) => (
-          <h1 key={data.id} className="text-2xl font-bold mb-4 px-8">
-            Area chart for {data.name}
-          </h1>
-        ))}
-
-        {processedData.map((data) => (
-          <AreaChart
-            width={800}
-            height={500}
-            data={processedData}
-            margin={{
-              top: 10,
-              right: 30,
-              left: 0,
-              bottom: 0,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey={data.name} />
-            <YAxis />
-
-            <Area
-              type="monotone"
-              dataKey={data.savings}
-              stackId={data.id}
-              stroke="#8884d8"
-              fill="#8884d8"
-            />
-            <Tooltip />
-          </AreaChart>
-        ))}
+        {processedData.length > 0 ? (
+          <>
+            <div className="flex items-center justify-between">
+              {chartData &&
+                chartData.map((item) => (
+                  <h1 key={data.id} className="text-3xl font-bold mb-4">
+                    Areachart for {item.name}
+                  </h1>
+                ))}
+              <Link href="/" className="hover:text-green-600">
+                Go To Back
+              </Link>
+            </div>
+            <AreaChart
+              width={800}
+              height={500}
+              data={processedData}
+              margin={{
+                top: 10,
+                right: 30,
+                left: 0,
+                bottom: 0,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis
+                dataKey="name"
+                label={{ value: "Values", angle: -90, position: "insideLeft" }}
+              />
+              <YAxis />
+              <Legend />
+              {valueColumns.map((column) => (
+                <Area
+                  type="monotone"
+                  dataKey={column.id}
+                  stackId="1"
+                  stroke={column.color}
+                  fill={column.color}
+                  name={column.name}
+                />
+              ))}
+              <Tooltip />
+            </AreaChart>
+          </>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
