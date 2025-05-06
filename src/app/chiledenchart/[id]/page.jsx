@@ -1,5 +1,6 @@
 "use client";
 
+import MultiBarChart from "@/app/chartview/[id]/page";
 import data from "@/data/data";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -144,7 +145,7 @@ const ChildrenChart = () => {
     // { id: "borr", name: "Borr/Br", color: "#ff00ff" },
     { id: "savings", name: "Savings", color: "#82ca9d" },
     { id: "savingsRatio", name: "Savings Ratio", color: "#ff00ff" },
-    { id: "os", name: "OS", color: "#ffff00" },
+    { id: "os", name: "OS", color: "#fff00" },
     { id: "avgos", name: "AvgOS", color: "#00ffff" },
     { id: "otr", name: "OTR", color: "#ff7f50" },
     { id: "totalcollection", name: "Total Collection", color: "#8884d8" },
@@ -163,6 +164,9 @@ const ChildrenChart = () => {
     <div className="p-4 bg-gray-200 min-h-screen">
       {/* <h1>{chartData.name}</h1> */}
       {/* <h1>{chartData.map((item)=>)}</h1> */}
+      <div className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200 flex items-center justify-center flex-col">
+        <MultiBarChart />
+      </div>
       <div className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200 flex items-center justify-center flex-col">
         {chartData && chartData.map((item)=>(
             <h1 className="text-3xl font-bold mb-4">{item.name}</h1>
@@ -232,7 +236,7 @@ const ChildrenChart = () => {
               <CartesianGrid strokeDasharray="3 3 3 3 3" />
               <XAxis dataKey="name" angle={0} textAnchor="middle" height={70} />
               <YAxis />
-              <Tooltip className="overflow-auto" />
+              <Tooltip className="" />
               <Legend verticalAlign="top" height={36} />
               {valueColumns.map((column) => (
                 <Bar
