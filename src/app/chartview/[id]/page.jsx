@@ -13,6 +13,7 @@ import {
 } from "recharts";
 import { useParams } from "next/navigation";
 import data from "../../../data/data";
+import Link from "next/link";
 
 const MultiBarChart = () => {
   const params = useParams();
@@ -102,8 +103,11 @@ const MultiBarChart = () => {
   // }
 
   return (
-    <div className="p-4" style={{ width: "100%", height: "500px" }}>
-      <h1 className="text-2xl font-bold mb-4 px-8">{chartData.name}</h1>
+    <div className="" style={{ width: "100%", height: "500px" }}>
+      <div className="flex items-center justify-between">
+      <h1 className="text-2xl font-bold mb-4">{chartData.name}</h1>
+      <Link href="/" className="hover:text-green-600">Go To Back</Link>
+      </div>
       <div
         className=""
         style={{ width: "100%", height: "100%", minHeight: "400px" }} // Ensure container has height
