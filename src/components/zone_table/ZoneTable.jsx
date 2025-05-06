@@ -31,6 +31,7 @@ const ZoneTable = () => {
               <button
                 onClick={() => toggleOpen(item.id)}
                 className=" text-white w-6 h-6 p-2 bg-gray-400 rounded-full flex items-center justify-center cursor-pointer"
+
               >
                 {isOpen ? (
                   <LuMinus className="text-[20px]" />
