@@ -171,7 +171,7 @@ const MultiBarChart = () => {
   // }
 
   return (
-    <div className="w-full flex flex-col p-4">
+    <div className="w-full flex flex-col">
       <div className="flex-col" style={{ width: "100%", height: "100vh" }}>
         <div className="flex items-center justify-between">
           <h1 className="lg:text-3xl md:text-2xl font-bold mb-4">

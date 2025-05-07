@@ -134,16 +134,16 @@ const ChildrenChart = () => {
 
   return (
     <div>
-      <div className="p-4 m-2 rounded-lg shadow-lg  flex items-center justify-center flex-col">
+      <div className="p-4 m-2 rounded-lg shadow-md  flex items-center justify-center flex-col">
         <MultiBarChart />
       </div>
 
-      <div className=" bg-gray-200 min-h-screen">
+      <div className=" min-h-screen">
         {/* barchart with prenate children  */}
 
         {/* Bar Chart  */}
         <div
-          className="p-4 m-2 rounded-lg shadow-lg bg-white border border-gray-200"
+          className="p-4 m-2 rounded-lg shadow-md"
           style={{ width: "99%", height: "100vh" }}
         >
           <div className="flex items-center justify-between">
@@ -203,7 +203,7 @@ const ChildrenChart = () => {
           </div>
         </div>
 
-        <div className="m-2 rounded-lg shadow-lg items-center justify-center flex-col">
+        <div className="p-2 rounded-lg items-center justify-center flex-col">
           <AreaChartCompo></AreaChartCompo>
         </div>
       </div>
