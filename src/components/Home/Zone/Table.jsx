@@ -1,154 +1,42 @@
 // "use client";
 
 // import { useState } from "react";
-// import data from "../../data/data";
+// import data from "../../../data/data";
+// import { useParams } from "next/navigation";
 
 // export default function OperationPlaceTree() {
 //   // Recursive component to render rows for each level
-//   const [data, setData] = useState([
-//     {
-//       id: "1",
-//       name: "Zone Office",
-//       borr: 713,
-//       savings: 1196.17,
-//       savingsRatio: "49%",
-//       os: 300.5,
-//       avgos: 3.5,
-//       otr: "90%",
-//       totalcollection: 13.19,
-//       serviceCharge: 9.36,
-//       savingscollection: 3.83,
-//       savingsrtn: 0.5,
-//       srratio: "50%",
-//       disbursement: 0.5,
-//       cashandbank: 0.5,
-//       overdue: 0.5,
-//       isOpen: false,
-//       children: [
-//         {
-//           id: "1.1",
-//           name: "Rangpur Division",
-//           borr: 876,
-//           savings: 107.01,
-//           savingsRatio: "44%",
-//           os: 245.01,
-//           avgos: 2.47,
-//           otr: "94%",
-//           totalcollection: 13.19,
-//           serviceCharge: 9.36,
-//           savingscollection: 3.83,
-//           savingsrtn: 0.5,
-//           srratio: "50%",
-//           disbursement: 0.5,
-//           cashandbank: 0.5,
-//           overdue: 0.5,
-//           isOpen: false,
-//           children: [
-//             {
-//               id: "1.1.1",
-//               name: "North Station A",
-//               borr: 500,
-//               savings: 80.25,
-//               savingsRatio: "38%",
-//               os: 150.25,
-//               avgos: 2.1,
-//               otr: "94%",
-//               totalcollection: 13.19,
-//               serviceCharge: 9.36,
-//               savingscollection: 3.83,
-//               savingsrtn: 0.5,
-//               srratio: "50%",
-//               disbursement: 0.5,
-//               cashandbank: 0.5,
-//               overdue: 0.5,
-//               isOpen: false,
-//               children: [
-//                 {
-//                   id: "1.1.1.1",
-//                   name: "North Station A1",
-//                   borr: 500,
-//                   savings: 80.25,
-//                   savingsRatio: "38%",
-//                   os: 150.25,
-//                   avgos: 2.1,
-//                   otr: "94%",
-//                   totalcollection: 13.19,
-//                   serviceCharge: 9.36,
-//                   savingscollection: 3.83,
-//                   savingsrtn: 0.5,
-//                   srratio: "50%",
-//                   disbursement: 0.5,
-//                   cashandbank: 0.5,
-//                   overdue: 0.5,
-//                   isOpen: false,
-//                 },
+//   const params = useParams();
+//   const { id } = params;
+//   const [data, setData] = useState([]);
+//   //   const [chartData, setChartData] = useState(null);
+//   //   const [loading, setLoading] = useState(true);
 
-//                 {
-//                   id: "1.1.1.2",
-//                   name: "North Station A2",
-//                   borr: 500,
-//                   savings: 80.25,
-//                   savingsRatio: "38%",
-//                   os: 150.25,
-//                   avgos: 2.1,
-//                   otr: "94%",
-//                   totalcollection: 13.19,
-//                   serviceCharge: 9.36,
-//                   savingscollection: 3.83,
-//                   savingsrtn: 0.5,
-//                   srratio: "50%",
-//                   disbursement: 0.5,
-//                   cashandbank: 0.5,
-//                   overdue: 0.5,
-//                   isOpen: false,
-//                 },
-//               ],
-//             },
-//           ],
-//         },
-//         {
-//           id: "1.2",
-//           name: "Dhaka Division",
-//           borr: 500,
-//           savings: 80.25,
-//           savingsRatio: "38%",
-//           os: 150.25,
-//           avgos: 2.1,
-//           otr: "94%",
-//           totalcollection: 13.19,
-//           serviceCharge: 9.36,
-//           savingscollection: 3.83,
-//           savingsrtn: 0.5,
-//           srratio: "50%",
-//           disbursement: 0.5,
-//           cashandbank: 0.5,
-//           overdue: 0.5,
-//           isOpen: false,
-//           children: [
-//             {
-//               id: "1.2.1",
-//               name: "Dhaka Division",
-//               borr: 500,
-//               savings: 80.25,
-//               savingsRatio: "38%",
-//               os: 150.25,
-//               avgos: 2.1,
-//               otr: "94%",
-//               totalcollection: 13.19,
-//               serviceCharge: 9.36,
-//               savingscollection: 3.83,
-//               savingsrtn: 0.5,
-//               srratio: "50%",
-//               disbursement: 0.5,
-//               cashandbank: 0.5,
-//               overdue: 0.5,
-//               isOpen: false,
-//             },
-//           ],
-//         },
-//       ],
-//     },
-//   ]);
+//   // Recursive function to find item by ID
+//   const findItemById = (items, id) => {
+//     for (let item of items) {
+//       if (item.id === id) return item;
+//       if (item.children && Array.isArray(item.children)) {
+//         const found = findItemById(item.children, id);
+//         if (found) return found;
+//       }
+//     }
+//     return null;
+//   };
+
+//   useEffect(() => {
+//     if (id) {
+//       setLoading(true);
+//       const item = findItemById(data, id);
+//       // console.log("Found item:", item); // Debug: Log the found items
+//       if (item) {
+//         setChartData(item);
+//       } else {
+//         setChartData(null);
+//       }
+//       setLoading(false);
+//     }
+//   }, [id]);
 
 //   // const [selectedNode, setSelectedNode] = useState(null);
 //   const [editModal, setEditModal] = useState({

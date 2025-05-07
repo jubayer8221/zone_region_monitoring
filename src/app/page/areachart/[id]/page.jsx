@@ -17,7 +17,7 @@ import {
   Cell,
 } from "recharts";
 import { useParams } from "next/navigation";
-import data from "../../../data/data";
+import data from "../../../../data/data";
 import Link from "next/link";
 
 const AreaChartCompo = () => {
@@ -240,7 +240,10 @@ const AreaChartCompo = () => {
             Go To Back
           </Link>
         </div>
-        <div style={{ width: "98%", height: "90%", minHeight: "400px" }} className="">
+        <div
+          style={{ width: "98%", height: "90%", minHeight: "400px" }}
+          className=""
+        >
           <ResponsiveContainer width="100%" height="100%">
             <LineChart width={500} height={300} data={processedData}>
               <XAxis dataKey={processedData.name} />
@@ -272,7 +275,10 @@ const AreaChartCompo = () => {
             Go To Back
           </Link>
         </div>
-        <div style={{ width: "100%", height: "80%", minHeight: "70vh" }} className="mt-4">
+        <div
+          style={{ width: "100%", height: "80%", minHeight: "70vh" }}
+          className="mt-4"
+        >
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
