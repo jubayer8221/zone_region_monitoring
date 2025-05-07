@@ -1,16 +1,12 @@
 "use client";
 
-import MultiBarChart from "@/app/chartview/[id]/page";
-import AreaChartCompo from "@/app/areachart/[id]/page";
+import MultiBarChart from "@/app/page/chartview/[id]/page";
+import AreaChartCompo from "@/app/page/areachart/[id]/page";
 import data from "@/data/data";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import {
-  LineChart,
-  Line,
-  AreaChart,
-  Area,
   BarChart,
   Bar,
   XAxis,
@@ -29,7 +25,7 @@ const ChildrenChart = () => {
   console.log("found", chartData);
 
   const findItemById = (items, id) => {
-    // console.log("all data",items)
+    // console.log("all data", items);
     for (let item of items) {
       if (item.id === id) return item;
       if (item.children) {
@@ -48,6 +44,7 @@ const ChildrenChart = () => {
     const collect = (node) => {
       console.log("collect: ", node);
       chartData.push({
+        id: node.id,
         name: node.name,
         borr: node.borr,
         savings: node.savings,
@@ -81,13 +78,13 @@ const ChildrenChart = () => {
     showTooltip: true,
   });
 
-  const commonProps = {
-    data: chartData2,
-    margin: { top: 20, right: 30, left: 20, bottom: 60 },
-    layout: chartConfig.horizontal ? "vertical" : "horizontal",
-    animationDuration: 500,
-    animationEasing: "ease-in-out",
-  };
+  // const commonProps = {
+  //   data: chartData2,
+  //   margin: { top: 20, right: 30, left: 20, bottom: 60 },
+  //   layout: chartConfig.horizontal ? "vertical" : "horizontal",
+  //   animationDuration: 500,
+  //   animationEasing: "ease-in-out",
+  // };
 
   const processedData = chartData2
     ? [
@@ -130,10 +127,10 @@ const ChildrenChart = () => {
     { id: "overdue", name: "Overdue", color: "#ff0000" },
   ];
 
-  console.log(chartData, "chartData");
+  console.log(chartData2, "chartData");
 
   return (
-    <div>
+    <div className="p-4 m-2">
       <div className="p-4 m-2 rounded-lg shadow-md  flex items-center justify-center flex-col">
         <MultiBarChart />
       </div>
@@ -149,12 +146,12 @@ const ChildrenChart = () => {
           <div className="flex items-center justify-between">
             {chartData &&
               chartData.map((item) => (
-                <h1
-                  key={data.id}
+                <h2
+                  key={item.name}
                   className="xl:text-3xl lg:text-2xl font-bold mb-4"
                 >
                   Barchart for {item.name}
-                </h1>
+                </h2>
               ))}
             <Link
               href="/"
