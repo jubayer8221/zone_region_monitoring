@@ -194,8 +194,20 @@ const AreaChartCompo = () => {
             Go To Back
           </Link>
         </div>
-        <div style={{ width: "100%", height: "100%", minHeight: "400px" }}>
-          <ResponsiveContainer width="100%" height="100%">
+        <div
+          className="flex-grow overflow-auto"
+          style={{
+            width: "100%",
+            minHeight: "400px",
+            // These styles ensure the container takes remaining space and scrolls
+          }}
+        >
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            minWidth="1410px"
+            minHeight="650px"
+          >
             <AreaChart {...commonProps}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey={data.name} />
@@ -234,17 +246,26 @@ const AreaChartCompo = () => {
       >
         <div className="flex items-center justify-between">
           <h1 className="lg:text-3xl md:text-2xl font-bold mb-4">
-            Area Chart of {chartData.name}
+            Line Chart of {chartData.name}
           </h1>
           <Link href="/" className="hover:text-green-600">
             Go To Back
           </Link>
         </div>
         <div
-          style={{ width: "98%", height: "90%", minHeight: "400px" }}
-          className=""
+          className="flex-grow overflow-auto"
+          style={{
+            width: "100%",
+            minHeight: "600px",
+            // These styles ensure the container takes remaining space and scrolls
+          }}
         >
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            minWidth="1410px"
+            minHeight="600px"
+          >
             <LineChart width={500} height={300} data={processedData}>
               <XAxis dataKey={processedData.name} />
               <YAxis />
@@ -276,10 +297,19 @@ const AreaChartCompo = () => {
           </Link>
         </div>
         <div
-          style={{ width: "100%", height: "80%", minHeight: "70vh" }}
-          className="mt-4"
+          className="flex-grow overflow-auto text-wrap"
+          style={{
+            width: "100%",
+            minHeight: "700px",
+            // These styles ensure the container takes remaining space and scrolls
+          }}
         >
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            minWidth="710px"
+            minHeight="630px"
+          >
             <PieChart>
               <Pie
                 data={processedData}

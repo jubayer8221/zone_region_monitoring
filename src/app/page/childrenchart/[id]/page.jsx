@@ -162,10 +162,19 @@ const ChildrenChart = () => {
           </div>
 
           <div
-            className=""
-            style={{ width: "100%", height: "100%", minHeight: "400px" }}
+            className="flex-grow overflow-auto m-4"
+            style={{
+              width: "100%",
+              minHeight: "400px",
+              // These styles ensure the container takes remaining space and scrolls
+            }}
           >
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer
+              width="100%"
+              height="100%"
+              minWidth="1410px"
+              minHeight="730px"
+            >
               <BarChart
                 data={processedData}
                 margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
