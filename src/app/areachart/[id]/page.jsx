@@ -229,7 +229,7 @@ const AreaChartCompo = () => {
 
       {/* Line Chart */}
       <div
-        className="p-4 bg-white min-h-screen shadow-md rounded-lg"
+        className="p-4 bg-white shadow-md rounded-lg"
         style={{ width: "100%", height: "99vh" }} // Ensure container has height
       >
         <div className="flex items-center justify-between">
@@ -262,7 +262,7 @@ const AreaChartCompo = () => {
       {/* Pie Chart */}
       <div
         className="p-4 bg-white shadow-md rounded-lg"
-        style={{ width: "98%", height: "99vh" }} // Ensure container has height
+        style={{ width: "100%", height: "99vh" }} // Ensure container has height
       >
         <div className="flex items-center justify-between">
           <h1 className="lg:text-3xl md:text-2xl font-bold mb-4">
