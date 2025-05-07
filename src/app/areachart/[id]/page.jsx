@@ -180,10 +180,10 @@ const AreaChartCompo = () => {
   }
 
   return (
-    <div className="w-full flex flex-col gap-4 p-4">
+    <div className="w-full flex flex-col gap-4">
       {/* Area Chart */}
       <div
-        className="p-4 bg-gray-100 min-h-screen rounded-lg"
+        className="p-4 bg-white min-h-screen shadow-md rounded-lg"
         style={{ width: "100%", height: "99vh" }} // Ensure container has height
       >
         <div className="flex items-center justify-between">
@@ -229,7 +229,7 @@ const AreaChartCompo = () => {
 
       {/* Line Chart */}
       <div
-        className="p-4 bg-gray-100 min-h-screen rounded-lg"
+        className="p-4 bg-white min-h-screen shadow-md rounded-lg"
         style={{ width: "100%", height: "99vh" }} // Ensure container has height
       >
         <div className="flex items-center justify-between">
@@ -240,7 +240,7 @@ const AreaChartCompo = () => {
             Go To Back
           </Link>
         </div>
-        <div style={{ width: "100%", height: "100%", minHeight: "400px" }}>
+        <div style={{ width: "98%", height: "90%", minHeight: "400px" }} className="">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart width={500} height={300} data={processedData}>
               <XAxis dataKey={processedData.name} />
@@ -261,8 +261,8 @@ const AreaChartCompo = () => {
 
       {/* Pie Chart */}
       <div
-        className="p-4 bg-gray-100 min-h-screen rounded-lg"
-        style={{ width: "100%", height: "99vh" }} // Ensure container has height
+        className="p-4 bg-white shadow-md rounded-lg"
+        style={{ width: "98%", height: "99vh" }} // Ensure container has height
       >
         <div className="flex items-center justify-between">
           <h1 className="lg:text-3xl md:text-2xl font-bold mb-4">
@@ -272,14 +272,14 @@ const AreaChartCompo = () => {
             Go To Back
           </Link>
         </div>
-        <div style={{ width: "100%", height: "100%", minHeight: "99vh" }}>
+        <div style={{ width: "100%", height: "80%", minHeight: "70vh" }} className="mt-4">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
                 data={processedData}
                 cx="50%"
                 cy="50%"
-                outerRadius={80}
+                outerRadius={200}
                 fill="#8884d8"
                 dataKey="savings" // Change this to whichever metric you want to show
                 nameKey="name"
