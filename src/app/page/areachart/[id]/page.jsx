@@ -206,7 +206,7 @@ const AreaChartCompo = () => {
             width="100%"
             height="100%"
             minWidth="1410px"
-            minHeight="730px"
+            minHeight="650px"
           >
             <AreaChart {...commonProps}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -256,7 +256,7 @@ const AreaChartCompo = () => {
           className="flex-grow overflow-auto"
           style={{
             width: "100%",
-            minHeight: "700px",
+            minHeight: "600px",
             // These styles ensure the container takes remaining space and scrolls
           }}
         >
