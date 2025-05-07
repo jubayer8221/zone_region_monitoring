@@ -1,6 +1,4 @@
 "use client";
-
-import MultiBarChart from "@/app/page/chartview/[id]/page";
 import AreaChartCompo from "@/app/page/areachart/[id]/page";
 import data from "@/data/data";
 import Link from "next/link";
@@ -130,15 +128,14 @@ const ChildrenChart = () => {
   console.log(chartData2, "chartData");
 
   return (
-    <div className="p-4 m-2">
-      <div className="p-4 m-2 rounded-lg shadow-md  flex items-center justify-center flex-col">
-        <MultiBarChart />
-      </div>
-
+    <div className="xl:p-4 m-2">
       <div className=" min-h-screen">
-        {/* barchart with prenate children  */}
+        {/* multiple chart  */}
+        <div className="p-2 rounded-lg items-center justify-center flex-col">
+          <AreaChartCompo></AreaChartCompo>
+        </div>
 
-        {/* Bar Chart  */}
+        {/*single Bar Chart  */}
         <div
           className="p-4 m-2 rounded-lg shadow-md"
           style={{ width: "99%", height: "100vh" }}
@@ -162,7 +159,7 @@ const ChildrenChart = () => {
           </div>
 
           <div
-            className="flex-grow overflow-auto m-4"
+            className="flex-grow overflow-auto m-4 scrollbar-hiden"
             style={{
               width: "100%",
               minHeight: "400px",
@@ -207,10 +204,6 @@ const ChildrenChart = () => {
               </BarChart>
             </ResponsiveContainer>
           </div>
-        </div>
-
-        <div className="p-2 rounded-lg items-center justify-center flex-col">
-          <AreaChartCompo></AreaChartCompo>
         </div>
       </div>
     </div>

@@ -15,6 +15,8 @@ import {
   PieChart,
   Pie,
   Cell,
+  BarChart,
+  Bar,
 } from "recharts";
 import { useParams } from "next/navigation";
 import data from "../../../../data/data";
@@ -181,6 +183,58 @@ const AreaChartCompo = () => {
 
   return (
     <div className="w-full flex flex-col gap-4">
+      <div className="flex-col bg-white shadow-md p-4 rounded-md" style={{ width: "100%", height: "100vh" }}>
+        <div className="flex items-center justify-between ">
+          <h1 className="lg:text-3xl md:text-2xl font-bold mb-4">
+            Barchart of {chartData.name}
+          </h1>
+          <Link href="/" className="hover:text-green-600">
+            Go To Back
+          </Link>
+        </div>
+
+        {/* Chart container - scrollable */}
+        <div
+          className="flex-grow overflow-auto scrollbar-hiden"
+          style={{
+            width: "100%",
+            minHeight: "400px",
+            // These styles ensure the container takes remaining space and scrolls
+          }}
+        >
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            minWidth="1410px"
+            minHeight="730px"
+          >
+            <BarChart
+              data={processedData}
+              margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" angle={0} textAnchor="middle" height={70} />
+              <YAxis />
+              <Tooltip
+                formatter={(value, name) => {
+                  if (name === "savingsRatio" || "otr" || "srratio")
+                    return `${value}%`;
+                  return value;
+                }}
+              />
+              <Legend verticalAlign="top" height={36} />
+              {valueColumns.map((column) => (
+                <Bar
+                  key={column.id}
+                  dataKey={column.id}
+                  name={column.name}
+                  fill={column.color}
+                />
+              ))}
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
       {/* Area Chart */}
       <div
         className="p-4 bg-white min-h-screen shadow-md rounded-lg"
@@ -195,10 +249,10 @@ const AreaChartCompo = () => {
           </Link>
         </div>
         <div
-          className="flex-grow overflow-auto"
+          className="flex-grow overflow-auto scrollbar-hiden"
           style={{
             width: "100%",
-            minHeight: "400px",
+            minHeight: "550px",
             // These styles ensure the container takes remaining space and scrolls
           }}
         >
@@ -253,7 +307,7 @@ const AreaChartCompo = () => {
           </Link>
         </div>
         <div
-          className="flex-grow overflow-auto"
+          className="flex-grow overflow-auto scrollbar-hiden"
           style={{
             width: "100%",
             minHeight: "600px",
@@ -297,7 +351,7 @@ const AreaChartCompo = () => {
           </Link>
         </div>
         <div
-          className="flex-grow overflow-auto text-wrap"
+          className="flex-grow overflow-auto text-wrap scrollbar-hiden"
           style={{
             width: "100%",
             minHeight: "700px",
