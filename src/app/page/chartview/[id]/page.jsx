@@ -225,61 +225,6 @@ const MultiBarChart = () => {
         </div>
       </div>
     </div>
-    // <div className="w-full flex flex-col" style={{ height: "100vh" }}>
-    //   <div className="flex-col flex-grow-0">
-    //     {/* Header section - not scrollable */}
-    //     <div className="flex items-center justify-between">
-    //       <h1 className="lg:text-3xl md:text-2xl font-bold mb-4">
-    //         Barchart of {chartData?.name || "Data"}
-    //       </h1>
-    //       <Link href="/" className="hover:text-green-600">
-    //         Go To Back
-    //       </Link>
-    //     </div>
-    //   </div>
-
-    //   {/* Chart container - scrollable */}
-    //   <div
-    //     className="flex-grow overflow-auto"
-    //     style={{
-    //       width: "100%",
-    //       minHeight: "400px",
-    //       // These styles ensure the container takes remaining space and scrolls
-    //     }}
-    //   >
-    //     <ResponsiveContainer
-    //       width="100%"
-    //       height="100%"
-    //       minWidth="975px"
-    //       minHeight="400px"
-    //     >
-    //       <BarChart
-    //         data={processedData}
-    //         margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
-    //       >
-    //         <CartesianGrid strokeDasharray="3 3" />
-    //         <XAxis dataKey="name" angle={0} textAnchor="middle" height={70} />
-    //         <YAxis />
-    //         <Tooltip
-    //           formatter={(value, name) => {
-    //             if (name === "savingsRatio" || "otr" || "srratio")
-    //               return `${value}%`;
-    //             return value;
-    //           }}
-    //         />
-    //         <Legend verticalAlign="top" height={36} />
-    //         {valueColumns.map((column) => (
-    //           <Bar
-    //             key={column.id}
-    //             dataKey={column.id}
-    //             name={column.name}
-    //             fill={column.color}
-    //           />
-    //         ))}
-    //       </BarChart>
-    //     </ResponsiveContainer>
-    //   </div>
-    // </div>
   );
 };
 
